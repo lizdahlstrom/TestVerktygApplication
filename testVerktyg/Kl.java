@@ -1,8 +1,8 @@
 package testVerktyg;
 
-public class aodg {
+public class Kl {
 
-	public aodg() {
+	public Kl() {
 		// TODO Auto-generated constructor stub
 	}
 
