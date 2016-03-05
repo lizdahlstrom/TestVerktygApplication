@@ -41,11 +41,18 @@ public class QuestionCreator {
 
 		@Override
 		public void handle(ActionEvent event) {
-			// TODO Auto-generated method stub
-			
+			generateOptionField();
 		}
 		
 	});
+		save.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				saveQuestion();
+			}
+		});
+		
+		
 	}
 
 
@@ -54,13 +61,11 @@ public class QuestionCreator {
 	
 
 		public void generateOptionField (){
-			addOption.setOnAction(event -> {
 				txtOption= new TextField();
 				radCorr = new RadioButton();
 				ansField.add(txtOption);
 				ansCorr.add(radCorr);
 				questionList.getChildren().addAll(txtOption,radCorr);				
-			});
 		}
 
 		
@@ -70,9 +75,6 @@ public class QuestionCreator {
 
 
 		public void saveQuestion(){
-			save.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
 					getAnsField().forEach((item) -> options.add(item.getText()));
 					question.setOptions(options);
 					question.setQuery(txtQuestion.getText());
@@ -85,8 +87,6 @@ public class QuestionCreator {
 
 					Platform.exit();
 				}
-			});
-		}
 
 		public ArrayList<TextField> getAnsField(){
 			return ansField;
