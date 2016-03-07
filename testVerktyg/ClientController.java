@@ -10,6 +10,18 @@ public class ClientController {
 		model = new ClientModel();
 		view = new ClientView();
 
+		view.getBtnNext().setOnAction(e->{
+
+		});
+
+		view.getBtnPrev().setOnAction(e-> {
+
+		});
+
+		view.getBtnSend().setOnAction(e-> {
+
+		});
+
 
 	}
 

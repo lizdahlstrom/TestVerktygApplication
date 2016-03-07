@@ -15,7 +15,7 @@ public class AdminView {
 
 
 	public AdminView() {
-		createDefaultView();		
+		setDefaultView();		
 		// Create button event
 		btnCreateQuest.setOnAction(e -> {
 			qCreator = new QuestionCreator();
@@ -28,7 +28,7 @@ public class AdminView {
 		});
 	}
 
-	private void createDefaultView(){
+	public void setDefaultView(){
 		center = new AnchorPane();
 
 		btnCreateQuest = new Button();

@@ -20,13 +20,16 @@ public class AdminController {
 			// Save button in default admin view
 		});
 
-		q.getBtnSave().setOnAction(e -> {
-			//model.makeTest(q.getForm());
+		q.getBtnSaveForm().setOnAction(e -> { // Save form, method call to reset field for new input
+			model.makeTest(q.getForm());
+			q.resetField();
 		});
 
+		q.getBtnFinish().setOnAction(e-> { //  Call method to save entire test, reset field, go back to default view
+			model.saveTest();
+			q.resetField();
+			view.setDefaultView();		
+		});
 	}
-
-
-
 
 }

@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 public class QuestionCreator {
-	private Button btnTitle, btnSave, btnAddOption;
+	private Button btnTitle, btnSave, btnAddOption, btnSaveForm, btnFinish;
 	private TextField txtQuestion, txtOption;
 	private RadioButton radCorr;
 
@@ -29,16 +29,19 @@ public class QuestionCreator {
 	public void startQuestionCreator() {
 		btnTitle = new Button("Title");
 		btnSave = new Button("Save");
+		btnFinish = new Button("Finish");
 		txtQuestion = new TextField();
 		btnAddOption = new Button("+");
 		questionList = new VBox();
-		questionList.getChildren().addAll(btnTitle, btnSave, txtQuestion, btnAddOption);
+		questionList.getChildren().addAll(btnTitle, btnSave, txtQuestion, btnAddOption, btnSaveForm, btnFinish);
 		questionList.setPrefSize(400, 400);
 
 		btnAddOption.setOnAction(event -> generateOptionField());
 		btnSave.setOnAction(event -> saveQuestion());
 		scene = new Scene(questionList, 400, 400);
 	}
+
+
 
 	public VBox getQuestionList() {
 		return questionList;
@@ -60,7 +63,7 @@ public class QuestionCreator {
 		return question;
 	}
 
-	private void saveQuestion() {
+	private void saveQuestion() { // move to model ??
 		getAnsField().forEach((item) -> options.add(item.getText()));
 		question.setOptions(options);
 		question.setQuery(txtQuestion.getText());
@@ -71,6 +74,10 @@ public class QuestionCreator {
 			}
 		});
 
+	}
+
+	public void resetField(){
+		// Code should reset questionfield
 	}
 
 	// Getters and setters
@@ -86,12 +93,16 @@ public class QuestionCreator {
 		return btnTitle;
 	}
 
-	public Button getBtnSave() {
-		return btnSave;
+	public Button getBtnFinish() {
+		return btnFinish;
 	}
 
 	public Button getBtnAddOption() {
 		return btnAddOption;
+	}
+
+	public Button getBtnSaveForm() {
+		return btnSaveForm;
 	}
 
 }
