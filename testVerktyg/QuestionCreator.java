@@ -2,8 +2,6 @@ package testVerktyg;
 
 import java.util.ArrayList;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -11,9 +9,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 public class QuestionCreator {
-	private Button title, save, addOption;
+	private Button btnTitle, btnSave, btnAddOption;
 	private TextField txtQuestion, txtOption;
 	private RadioButton radCorr;
+
 	private ArrayList<TextField> ansField;
 	private ArrayList<RadioButton> ansCorr;
 	private VBox questionList;
@@ -28,28 +27,16 @@ public class QuestionCreator {
 	}
 
 	public void startQuestionCreator() {
-		title = new Button("Title");
-		save = new Button("Save");
+		btnTitle = new Button("Title");
+		btnSave = new Button("Save");
 		txtQuestion = new TextField();
-		addOption = new Button("+");
+		btnAddOption = new Button("+");
 		questionList = new VBox();
-		questionList.getChildren().addAll(title, save, txtQuestion, addOption);
+		questionList.getChildren().addAll(btnTitle, btnSave, txtQuestion, btnAddOption);
 		questionList.setPrefSize(400, 400);
 
-		addOption.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				generateOptionField();
-			}
-
-		});
-		save.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				saveQuestion();
-			}
-		});
+		btnAddOption.setOnAction(event -> generateOptionField());
+		btnSave.setOnAction(event -> saveQuestion());
 		scene = new Scene(questionList, 400, 400);
 	}
 
@@ -86,12 +73,24 @@ public class QuestionCreator {
 
 	}
 
+	// Getters and setters
 	private ArrayList<TextField> getAnsField() {
 		return ansField;
 	}
 
 	private ArrayList<RadioButton> getCorrAns() {
 		return ansCorr;
+	}
+	public Button getBtnTitle() {
+		return btnTitle;
+	}
+
+	public Button getBtnSave() {
+		return btnSave;
+	}
+
+	public Button getBtnAddOption() {
+		return btnAddOption;
 	}
 
 }

@@ -16,4 +16,8 @@ public class AdminModel {
 
 	}
 
+	public ArrayList<ArrayList<Form>> getTest() {
+		return test;
+	}
+
 }

@@ -6,32 +6,60 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 public class AdminView {
-	private Button createQuest;
-	private Button saveTest;
+	private Button btnCreateQuest;
+	private Button btnSaveTest;
 	private Scene scene;
 	private AnchorPane center;
+	private QuestionCreator qCreator;
+
+
 
 	public AdminView() {
+		createDefaultView();		
+		// Create button event
+		btnCreateQuest.setOnAction(e -> {
+			qCreator = new QuestionCreator();
+			center.getChildren().clear();
+			center.getChildren().add(qCreator.getQuestionList());
+		});
+		// Save button event
+		btnSaveTest.setOnAction(e -> {
 
+		});
+	}
+
+	private void createDefaultView(){
 		center = new AnchorPane();
 
-		createQuest = new Button();
-		center.setTopAnchor(createQuest, 20.0);
-		center.setLeftAnchor(createQuest, 20.0);
-		createQuest.setText("Create");
+		btnCreateQuest = new Button();
+		center.setTopAnchor(btnCreateQuest, 20.0);
+		center.setLeftAnchor(btnCreateQuest, 20.0);
+		btnCreateQuest.setText("Create");
 
-		saveTest = new Button();
-		center.setTopAnchor(saveTest, 160.0);
-		center.setLeftAnchor(saveTest, 20.0);
-		saveTest.setText("Save");
+		btnSaveTest = new Button();
+		center.setTopAnchor(btnSaveTest, 160.0);
+		center.setLeftAnchor(btnSaveTest, 20.0);
+		btnSaveTest.setText("Save");
 
-		center.getChildren().addAll(createQuest, saveTest);
-		scene = new Scene(center, 400, 400);
-
+		center.getChildren().addAll(btnCreateQuest, btnSaveTest);
+		scene = new Scene(center, 400, 400);		
 	}
 
 	public Scene getAdminScene() {
 		return scene;
+	}
+
+	// Getters och setters
+	public Button getBtnCreateQuest() {
+		return btnCreateQuest;
+	}
+
+	public Button getBtnSaveTest() {
+		return btnSaveTest;
+	}
+
+	public void setCenterView(Scene scene){
+		this.scene = scene;
 	}
 
 }
