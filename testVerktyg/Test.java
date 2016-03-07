@@ -10,11 +10,32 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Test {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int tId;
+	private int testId;
 	@ManyToOne
-	private int qId;
+	private int questId;
+
+	public Test(int testId, int questId) {
+		super();
+		this.testId = testId;
+		this.questId = questId;
+	}
+
+	public int getTestId() {
+		return testId;
+	}
+
+	public void setTestId(int testId) {
+		this.testId = testId;
+	}
+
+	public int getQuestId() {
+		return questId;
+	}
+
+	public void setQuestId(int questId) {
+		this.questId = questId;
+	}
 
 }
