@@ -2,10 +2,9 @@ package testVerktyg;
 
 import java.util.ArrayList;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -22,6 +21,8 @@ public class QuestionCreator {
 	private ArrayList<String> options = new ArrayList<>();
 	private Form question = new Form();;
 
+	private Scene scene;
+
 	public QuestionCreator() {
 		startQuestionCreator();
 	}
@@ -33,7 +34,7 @@ public class QuestionCreator {
 		addOption = new Button("+");
 		questionList = new VBox();
 		questionList.getChildren().addAll(title, save, txtQuestion, addOption);
-		questionList.setPrefSize(400, 800);
+		questionList.setPrefSize(400, 400);
 
 		addOption.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -49,11 +50,15 @@ public class QuestionCreator {
 				saveQuestion();
 			}
 		});
-
+		scene = new Scene(questionList, 400, 400);
 	}
 
 	public VBox getQuestionList() {
 		return questionList;
+	}
+
+	public Scene getScene() {
+		return scene;
 	}
 
 	private void generateOptionField() {

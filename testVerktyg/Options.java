@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +16,7 @@ public class Options {
 	private int optionId;
 	private String option;
 	private boolean isTrue;
+	@OneToMany
 	private int questId;
 
 	public Options(int optionId, String option, boolean isTrue, int questId) {
