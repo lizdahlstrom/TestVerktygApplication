@@ -79,7 +79,6 @@ public class QuestionCreator {
 			}
 		});
 
-		Platform.exit();
 	}
 
 	private ArrayList<TextField> getAnsField() {
