@@ -18,7 +18,7 @@ public class QuestionCreator {
 	private VBox questionList;
 
 	private ArrayList<String> options = new ArrayList<>();
-	private Form question = new Form();;
+	private Form question = new Form();
 
 	private Scene scene;
 
@@ -81,6 +81,7 @@ public class QuestionCreator {
 	private ArrayList<RadioButton> getCorrAns() {
 		return ansCorr;
 	}
+
 	public Button getBtnTitle() {
 		return btnTitle;
 	}

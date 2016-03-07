@@ -3,12 +3,12 @@ package testVerktyg;
 import java.util.ArrayList;
 
 public class AdminModel {
-	private ArrayList<ArrayList<Form>> test;
+	private ArrayList<Form> test;
 
 	public AdminModel() {
 	}
 
-	public void makeTest(ArrayList<Form> question) {
+	public void makeTest(Form question) {
 		test.add(question);
 	}
 
@@ -16,7 +16,7 @@ public class AdminModel {
 
 	}
 
-	public ArrayList<ArrayList<Form>> getTest() {
+	public ArrayList<Form> getTest() {
 		return test;
 	}
 
