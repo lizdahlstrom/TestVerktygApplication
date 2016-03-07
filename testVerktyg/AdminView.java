@@ -1,22 +1,17 @@
 
 package testVerktyg;
 
-import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-public class AdminGui {
+public class AdminView {
 	private Button createQuest;
 	private Button saveTest;
 	private Scene scene;
 	private AnchorPane center;
 
-	public AdminGui() {
+	public AdminView() {
 
 		center = new AnchorPane();
 
@@ -35,7 +30,7 @@ public class AdminGui {
 
 	}
 
-	public Scene adminScene1() {
+	public Scene getAdminScene() {
 		return scene;
 	}
 

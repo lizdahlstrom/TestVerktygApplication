@@ -12,6 +12,9 @@ import javafx.stage.Stage;
 public class TestToolApp extends Application {
 	//Instance variables
 	private ClientView clientView;
+	private AdminView adminView;
+	private InlogView inlogView;
+	private InlogModel inlogModel;
 	private String title = "Testverktyg";
 
 	public static void main(String[] args) {
@@ -20,11 +23,20 @@ public class TestToolApp extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		clientView = new ClientView();
-		primaryStage.setTitle(title);
-		primaryStage.setScene(clientView.getTestView());
-		primaryStage.show();
+		inlogView = new InlogView();
+		inlogModel = new InlogModel();
 
+		if(inlogModel.isAdmin(inlogView.getName(), inlogView.getPass())){
+			primaryStage.setTitle(title + ": Admin View");
+			adminView = new AdminView();
+			primaryStage.setScene(adminView.getAdminScene());
+		}
+		else if(!inlogModel.isAdmin(inlogView.getName(), inlogView.getPass())){
+			primaryStage.setTitle(title + ": Client View");
+			clientView = new ClientView();
+			primaryStage.setScene(clientView.getTestView());
+		}
+		primaryStage.show();
 	}
 
 }
