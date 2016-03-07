@@ -10,24 +10,31 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 	public class AdminGui {
-
+		private Button createQuest;
+		private Button saveTest;
+		private Scene scene;
+		private AnchorPane center;
+			public AdminGui() {
+				
+				
+				 center = new AnchorPane();
+				
+				
+				 createQuest = new Button();
+				center.setTopAnchor(createQuest, 20.0);
+				center.setLeftAnchor(createQuest, 0.0);
+				createQuest.setText("Create");
+				
+				saveTest = new Button();
+				center.setTopAnchor(saveTest, 160.0);
+				center.setLeftAnchor(saveTest, 0.0);
+				saveTest.setText("Save");
+		        
+				center.getChildren().addAll(createQuest, saveTest);
+				scene = new Scene(center,400,400);
+			}
 			
-			AnchorPane center = new AnchorPane();
 			
-			VBox vbox = new VBox(30);
-			
-			Button createQuest = new Button();
-			center.setTopAnchor(createQuest);
-			center.setLeftAnchor(createQuest);
-			createQuest.setText("Create");
-			
-			Button saveTest = new Button();
-			center.setTopAnchor(saveTest);
-			center.setLeftAnchor(saveTest);
-			saveTest.setText("Save");
-	        
-			center.getChildren().addAll(createQuest, saveTest);
-	        Scene scene = new Scene(center,400,400);
 	      
 	        
 	    
