@@ -16,10 +16,9 @@ public class InlogModel {
 				&& (user = entitymanager.find(User.class, name)) != null) {
 
 			if ((user = entitymanager.find(User.class, user)).isAdmin()) {
-
+				 bool=true;
 			}
 
-			// bool=true;
 
 		}
 
