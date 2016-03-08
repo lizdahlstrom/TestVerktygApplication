@@ -9,20 +9,20 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Test {
+public class TestEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int testId;
 	@ManyToOne
 	private int questId;
 
-	public Test(int testId, int questId) {
+	public TestEntity(int testId, int questId) {
 		super();
 		this.testId = testId;
 		this.questId = questId;
 	}
 
-	public Test() {
+	public TestEntity() {
 		super();
 	}
 

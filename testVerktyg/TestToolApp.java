@@ -27,18 +27,18 @@ public class TestToolApp extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		inlogView = new InlogView();
 		inlogModel = new InlogModel();
-		adminContr = new AdminController(primaryStage);
-
 
 		if(inlogModel.isAdmin(inlogView.getName(), inlogView.getPass())){
+			adminContr = new AdminController(primaryStage);
 			primaryStage.setTitle(title + ": Admin View");
 			primaryStage.setScene(adminContr.getView().getAdminScene());
 		}
 		else if(!inlogModel.isAdmin(inlogView.getName(), inlogView.getPass())){
+			clientContr = new ClientController(primaryStage);
 			primaryStage.setTitle(title + ": Client View");
-			clientView = new ClientView();
-			primaryStage.setScene(clientView.getTestView());
+			primaryStage.setScene(clientContr.getView().getTestView());
 		}
+
 		primaryStage.show();
 	}
 

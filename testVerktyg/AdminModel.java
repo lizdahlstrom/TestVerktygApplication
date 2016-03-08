@@ -22,7 +22,7 @@ public class AdminModel {
 		EntityManager entitymanager = emfactory.createEntityManager();
 		entitymanager.getTransaction().begin();
 
-		Test t = new Test();
+		TestEntity t = new TestEntity();
 		Questions questions = new Questions();
 		Options options = new Options();
 

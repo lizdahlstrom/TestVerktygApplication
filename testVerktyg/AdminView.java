@@ -12,16 +12,15 @@ public class AdminView {
 	private AnchorPane center;
 	private QuestionCreator qCreator;
 
-
-
+	//Constructor
 	public AdminView() {
 		setDefaultView();		
 		// Create button event
-		btnCreateQuest.setOnAction(e -> {
-			qCreator = new QuestionCreator();
-			center.getChildren().clear();
-			center.getChildren().add(qCreator.getQuestionList());
-		});
+		//		btnCreateQuest.setOnAction(e -> {
+		//			qCreator = new QuestionCreator();
+		//			center.getChildren().clear();
+		//			center.getChildren().add(qCreator.getQuestionList());
+		//		});
 		// Save button event
 		btnSaveTest.setOnAction(e -> {
 
@@ -62,4 +61,7 @@ public class AdminView {
 		this.scene = scene;
 	}
 
+	public AnchorPane getCenter() {
+		return center;
+	}
 }

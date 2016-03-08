@@ -13,27 +13,19 @@ public class AdminController {
 	public AdminController(Stage stage){
 		this.stage = stage;
 		view = new AdminView();
-		model = new AdminModel();
-		//
-		//		view.getBtnCreateQuest().setOnAction(e -> {
-		//			q = new QuestionCreator();
-		//			view.setCenterView(q.getScene());
-		//		});
-		//
-		//		view.getBtnSaveTest().setOnAction(e -> {
-		//			// Save button in default admin view
-		//		});
-		//
-		//		q.getBtnSaveForm().setOnAction(e -> { // Save form, method call to reset field for new input
-		//			model.makeTest(q.getForm());
-		//			q.resetField();
-		//		});
-		//
-		//		q.getBtnFinish().setOnAction(e-> { //  Call method to save entire test, reset field, go back to default view
-		//			model.saveTest();
-		//			q.resetField();
-		//			view.setDefaultView();		
-		//		});
+		//model = new AdminModel();
+
+		// Create question button
+		view.getBtnCreateQuest().setOnAction(e -> {
+			q = new QuestionCreator();
+			view.getCenter().getChildren().clear(); // clears anchorpane 
+			view.getCenter().getChildren().add(q.getQuestionList()); // adds vbox
+		});
+		// Save btn
+		view.getBtnSaveTest().setOnAction(e-> {
+
+		});
+
 	}
 
 	// Getters and setters
