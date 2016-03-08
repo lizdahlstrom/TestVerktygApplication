@@ -22,6 +22,10 @@ public class Test {
 		this.questId = questId;
 	}
 
+	public Test() {
+		super();
+	}
+
 	public int getTestId() {
 		return testId;
 	}

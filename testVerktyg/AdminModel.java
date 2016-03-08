@@ -22,9 +22,14 @@ public class AdminModel {
 		EntityManager entitymanager = emfactory.createEntityManager();
 		entitymanager.getTransaction().begin();
 
-		Test test = new Test();
+		Test t = new Test();
+		Questions questions = new Questions();
 		Options options = new Options();
 
+		entitymanager.persist(test);
+		entitymanager.getTransaction().commit();
+		entitymanager.close();
+		emfactory.close();
 	}
 
 	public ArrayList<Form> getTest() {

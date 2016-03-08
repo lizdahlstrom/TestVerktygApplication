@@ -27,6 +27,10 @@ public class Options {
 		this.questId = questId;
 	}
 
+	public Options() {
+		super();
+	}
+
 	public int getOptionId() {
 		return optionId;
 	}

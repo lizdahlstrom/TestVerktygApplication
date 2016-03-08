@@ -21,6 +21,10 @@ public class Questions {
 		this.question = question;
 	}
 
+	public Questions() {
+		super();
+	}
+
 	public int getQuestId() {
 		return questId;
 	}

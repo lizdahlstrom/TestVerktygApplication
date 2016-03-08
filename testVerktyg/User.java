@@ -23,6 +23,10 @@ public class User {
 		this.passWord = passWord;
 	}
 
+	public User() {
+		super();
+	}
+
 	public int getId() {
 		return id;
 	}
