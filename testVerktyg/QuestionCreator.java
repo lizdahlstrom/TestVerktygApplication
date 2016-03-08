@@ -30,6 +30,7 @@ public class QuestionCreator {
 		btnTitle = new Button("Title");
 		btnSave = new Button("Save");
 		btnFinish = new Button("Finish");
+		btnSaveForm = new Button("Save Form");
 		txtQuestion = new TextField();
 		btnAddOption = new Button("+");
 		questionList = new VBox();
