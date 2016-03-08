@@ -36,16 +36,21 @@ public class AdminModel {
 
 			form.getOptions().forEach((option) -> {
 				options.setOption(option);
+
+				test.forEach((corr) -> {
+					if (options.getOption() == corr.getOptions().get(corr.getCorrAns())) {
+						options.setTrue(true);
+
+					} else {
+						options.setTrue(false);
+					}
+
+				});
 				entitymanager.persist(options);
 			});
 
-			form.getCorrAns();
-
 		});
 
-		options.setOption(test.get(0).getQuery());
-
-		entitymanager.persist(test);
 		entitymanager.getTransaction().commit();
 		entitymanager.close();
 		emfactory.close();
