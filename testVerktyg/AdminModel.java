@@ -2,6 +2,10 @@ package testVerktyg;
 
 import java.util.ArrayList;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public class AdminModel {
 	private ArrayList<Form> test;
 
@@ -13,6 +17,13 @@ public class AdminModel {
 	}
 
 	public void saveTest() {
+		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+
+		EntityManager entitymanager = emfactory.createEntityManager();
+		entitymanager.getTransaction().begin();
+
+		Test test = new Test();
+		Options options = new Options();
 
 	}
 

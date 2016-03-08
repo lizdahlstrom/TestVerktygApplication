@@ -13,8 +13,8 @@ public class QuestionCreator {
 	private TextField txtQuestion, txtOption;
 	private RadioButton radCorr;
 
-	private ArrayList<TextField> ansField;
-	private ArrayList<RadioButton> ansCorr;
+	private ArrayList<TextField> ansField = new ArrayList<TextField>();
+	private ArrayList<RadioButton> ansCorr = new ArrayList<RadioButton>();
 	private VBox questionList;
 
 	private ArrayList<String> options = new ArrayList<>();
@@ -41,8 +41,6 @@ public class QuestionCreator {
 		btnSave.setOnAction(event -> saveQuestion());
 		scene = new Scene(questionList, 400, 400);
 	}
-
-
 
 	public VBox getQuestionList() {
 		return questionList;
@@ -77,7 +75,7 @@ public class QuestionCreator {
 
 	}
 
-	public void resetField(){
+	public void resetField() {
 		// Code should reset questionfield
 	}
 
