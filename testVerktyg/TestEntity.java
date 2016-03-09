@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+//Denna klassen talar 
 @Entity
 @Table
 public class TestEntity {
