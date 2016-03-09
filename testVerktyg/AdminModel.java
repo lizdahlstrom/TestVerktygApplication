@@ -24,7 +24,7 @@ public class AdminModel {
 
 		TestEntity t = new TestEntity();
 		Questions questions = new Questions();
-		Options options = new Options();
+		Choices options = new Choices();
 
 		test.forEach((form) -> {
 

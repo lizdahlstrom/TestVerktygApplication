@@ -9,7 +9,7 @@
 		transaction-type="RESOURCE_LOCAL">
 
 		<class>testVerktyg.Users</class>
-		<class>testVerktyg.Options</class>
+		<class>testVerktyg.Choices</class>
 		<class>testVerktyg.Questions</class>
 		<class>testVerktyg.TestEntity</class>
 

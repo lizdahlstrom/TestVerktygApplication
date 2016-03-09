@@ -9,45 +9,45 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Options {
+public class Choices {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int optionId;
-	private String option;
+	private int choiceId;
+	private String choice;
 	private boolean isTrue;
 
 	@ManyToOne
 	private Questions questions;
 
-	public Options(int optionId, String option, boolean isTrue, Questions questions) {
+	public Choices(int optionId, String option, boolean isTrue, Questions questions) {
 		super();
-		this.optionId = optionId;
-		this.option = option;
+		this.choiceId = optionId;
+		this.choice = option;
 		this.isTrue = isTrue;
 		this.questions = questions;
 
 		// this.questId = questId;
 	}
 
-	public Options() {
+	public Choices() {
 		super();
 	}
 
 	public int getOptionId() {
-		return optionId;
+		return choiceId;
 	}
 
 	public void setOptionId(int optionId) {
-		this.optionId = optionId;
+		this.choiceId = optionId;
 	}
 
 	public String getOption() {
-		return option;
+		return choice;
 	}
 
 	public void setOption(String option) {
-		this.option = option;
+		this.choice = option;
 	}
 
 	public boolean isTrue() {

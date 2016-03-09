@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,15 +15,22 @@ public class Questions {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int questId;
 	private String question;
+	@ManyToOne
+	private TestEntity testEntity;
 
-	public Questions(int questId, String question) {
+	public Questions(int questId, String question, TestEntity testEntity) {
 		super();
 		this.questId = questId;
 		this.question = question;
+		this.testEntity = testEntity;
 	}
 
 	public Questions() {
 		super();
+	}
+
+	public TestEntity getTestEntity() {
+		return testEntity;
 	}
 
 	public int getQuestId() {
