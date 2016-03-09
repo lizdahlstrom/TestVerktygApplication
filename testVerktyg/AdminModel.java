@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class AdminModel {
 	private ArrayList<Form> test;
@@ -16,10 +15,11 @@ public class AdminModel {
 		test.add(question);
 	}
 
-	public void saveTest() {
-		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+	public void saveTest(EntityManagerFactory emfactory, EntityManager entitymanager) {
+		// EntityManagerFactory emfactory =
+		// Persistence.createEntityManagerFactory("EclipseLink_JPA");
+		// EntityManager entitymanager = emfactory.createEntityManager();
 
-		EntityManager entitymanager = emfactory.createEntityManager();
 		entitymanager.getTransaction().begin();
 
 		TestEntity t = new TestEntity();
