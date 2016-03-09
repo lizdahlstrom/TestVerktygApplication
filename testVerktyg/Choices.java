@@ -27,7 +27,6 @@ public class Choices {
 		this.isTrue = isTrue;
 		this.questions = questions;
 
-		// this.questId = questId;
 	}
 
 	public Choices() {

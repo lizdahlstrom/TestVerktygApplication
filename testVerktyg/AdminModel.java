@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 
 public class AdminModel {
 	private ArrayList<Form> test;
+	private int testId = 0;
 
 	public AdminModel() {
 	}
@@ -16,13 +17,9 @@ public class AdminModel {
 	}
 
 	public void saveTest(EntityManagerFactory emfactory, EntityManager entitymanager) {
-		// EntityManagerFactory emfactory =
-		// Persistence.createEntityManagerFactory("EclipseLink_JPA");
-		// EntityManager entitymanager = emfactory.createEntityManager();
 
 		entitymanager.getTransaction().begin();
 
-		TestEntity t = new TestEntity();
 		Questions questions = new Questions();
 		Choices options = new Choices();
 
@@ -49,8 +46,6 @@ public class AdminModel {
 		});
 
 		entitymanager.getTransaction().commit();
-		entitymanager.close();
-		emfactory.close();
 	}
 
 	public ArrayList<Form> getTest() {
