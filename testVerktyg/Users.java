@@ -8,24 +8,24 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class User {
+public class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	private String name;
-	private String passWord;
+	private int uId;
+	private String uName;
+	private String uPassWord;
 	private boolean isAdmin;
 
-	public User(int id, String name, String passWord, Boolean isAdmin) {
+	public Users(int id, String name, String passWord, Boolean isAdmin) {
 		super();
-		this.id = id;
-		this.name = name;
-		this.passWord = passWord;
+		this.uId = id;
+		this.uName = name;
+		this.uPassWord = passWord;
 		this.isAdmin = isAdmin;
 	}
 
-	public User() {
+	public Users() {
 		super();
 	}
 
@@ -38,27 +38,27 @@ public class User {
 	}
 
 	public int getId() {
-		return id;
+		return uId;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.uId = id;
 	}
 
 	public String getName() {
-		return name;
+		return uName;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.uName = name;
 	}
 
 	public String getPassWord() {
-		return passWord;
+		return uPassWord;
 	}
 
 	public void setPassWord(String passWord) {
-		this.passWord = passWord;
+		this.uPassWord = passWord;
 	}
 
 }

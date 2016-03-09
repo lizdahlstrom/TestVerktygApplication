@@ -5,18 +5,18 @@ import javax.persistence.EntityManagerFactory;
 
 public class InlogModel {
 
-	private User user = new User();
-	private User pass = new User();
+	private Users user = new Users();
+	private Users pass = new Users();
 	private Boolean bool = false;
 
 	public boolean isAdmin(String name, String pw, EntityManagerFactory emfactory, EntityManager entitymanager) {
 		// EntityManagerFactory emfactory =
 		// Persistence.createEntityManagerFactory("Eclipselink_JPA");
 		// EntityManager entitymanager = emfactory.createEntityManager();
-		if ((user = entitymanager.find(User.class, name)) != null && (pass = entitymanager.find(User.class, pw)) != null
+		if ((user = entitymanager.find(Users.class, name)) != null && (pass = entitymanager.find(Users.class, pw)) != null
 				&& user.getId() == pass.getId()) {
 
-			if ((user = entitymanager.find(User.class, user)).isAdmin()) {
+			if ((user = entitymanager.find(Users.class, user)).isAdmin()) {
 				bool = true;
 			}
 
@@ -30,9 +30,9 @@ public class InlogModel {
 		// EntityManagerFactory emfactory =
 		// Persistence.createEntityManagerFactory("Eclipselink_JPA");
 		// EntityManager entitymanager = emfactory.createEntityManager();
-		if ((user = entitymanager.find(User.class, name)) != null && (pass = entitymanager.find(User.class, pw)) != null
+		if ((user = entitymanager.find(Users.class, name)) != null && (pass = entitymanager.find(Users.class, pw)) != null
 				&& user.getId() == pass.getId()) {
-			if ((user = entitymanager.find(User.class, user)).isAdmin() == false) {
+			if ((user = entitymanager.find(Users.class, user)).isAdmin() == false) {
 				bool = true;
 			}
 
