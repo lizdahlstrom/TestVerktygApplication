@@ -10,8 +10,8 @@
 
 		<class>testVerktyg.Users</class>
 		<class>testVerktyg.Options</class>
-		<class>testVerktyg.questions</class>
-		<class>testVerktyg.test</class>
+		<class>testVerktyg.Questions</class>
+		<class>testVerktyg.TestEntity</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/testdb" />
