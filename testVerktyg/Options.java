@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,15 +16,18 @@ public class Options {
 	private int optionId;
 	private String option;
 	private boolean isTrue;
-	@OneToMany
-	private int questId;
 
-	public Options(int optionId, String option, boolean isTrue, int questId) {
+	@ManyToOne
+	private Questions questions;
+
+	public Options(int optionId, String option, boolean isTrue, Questions questions) {
 		super();
 		this.optionId = optionId;
 		this.option = option;
 		this.isTrue = isTrue;
-		this.questId = questId;
+		this.questions = questions;
+
+		// this.questId = questId;
 	}
 
 	public Options() {
@@ -55,12 +58,8 @@ public class Options {
 		this.isTrue = isTrue;
 	}
 
-	public int getQuestId() {
-		return questId;
-	}
-
-	public void setQuestId(int questId) {
-		this.questId = questId;
+	public Questions getQuestions() {
+		return questions;
 	}
 
 }

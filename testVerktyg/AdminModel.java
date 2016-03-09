@@ -31,9 +31,6 @@ public class AdminModel {
 			questions.setQuestion(form.getQuery());
 			entitymanager.persist(questions);
 
-			t.setQuestId(questions.getQuestId());
-			entitymanager.persist(t);
-
 			form.getOptions().forEach((option) -> {
 				options.setOption(option);
 
