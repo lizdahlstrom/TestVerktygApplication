@@ -67,14 +67,14 @@ public class ClientView {
 
 		// Main layout
 		layout = new BorderPane();
-				
+
 		layout = new BorderPane();
 		centerLayout  = new VBox();
 		topPane = new AnchorPane(btnSend);
 		topPane.setRightAnchor(btnSend, 0.0);
 		centerLayout.setPadding(new Insets(30));
 		centerLayout.getChildren().addAll(lblTitle, lblDescript);
-		
+
 
 		layout.setTop(topPane);
 		layout.setCenter(centerLayout);
@@ -94,6 +94,10 @@ public class ClientView {
 
 	public Button getBtnPrev(){
 		return btnPrev;
+	}
+
+	public VBox getCenterLayout() {
+		return centerLayout;
 	}
 
 	public Button getBtnSend(){

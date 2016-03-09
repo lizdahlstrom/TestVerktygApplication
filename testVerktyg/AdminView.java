@@ -15,16 +15,6 @@ public class AdminView {
 	//Constructor
 	public AdminView() {
 		setDefaultView();		
-		// Create button event
-		//		btnCreateQuest.setOnAction(e -> {
-		//			qCreator = new QuestionCreator();
-		//			center.getChildren().clear();
-		//			center.getChildren().add(qCreator.getQuestionList());
-		//		});
-		// Save button event
-		btnSaveTest.setOnAction(e -> {
-
-		});
 	}
 
 	public void setDefaultView(){

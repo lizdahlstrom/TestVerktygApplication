@@ -15,6 +15,7 @@ public class ClientController {
 
 		view.getBtnNext().setOnAction(e->{
 
+
 		});
 
 		view.getBtnPrev().setOnAction(e-> {
