@@ -8,7 +8,7 @@
 	<persistence-unit name="Eclipselink_JPA"
 		transaction-type="RESOURCE_LOCAL">
 
-		<class>testVerktyg.User</class>
+		<class>testVerktyg.Users</class>
 		<class>testVerktyg.Options</class>
 		<class>testVerktyg.questions</class>
 		<class>testVerktyg.test</class>
