@@ -9,8 +9,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class InlogView {
+//This class is for the inlogGUi with one "OK" button where the user can type in the username and password.
 
+public class InlogView {
+	
 	private String name1 = "";
 	private String pass1 = "";
 	private Stage stage1;
