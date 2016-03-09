@@ -36,15 +36,25 @@ public class TestToolApp extends Application {
 		emfactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
 		em = emfactory.createEntityManager();
 
-		if(inlogModel.isAdmin(inlogView.getName(), inlogView.getPass())){
+		Boolean isAdmin = inlogModel.isAdmin(inlogView.getName(), inlogView.getPass(), emfactory, em);
+
+		if(isAdmin){
 			adminContr = new AdminController(primaryStage, emfactory, em);
 			primaryStage.setTitle(title + ": Admin View");
 			primaryStage.setScene(adminContr.getView().getAdminScene());
 		}
-		else if(!inlogModel.isAdmin(inlogView.getName(), inlogView.getPass())){
+		else if(!isAdmin){
 			clientContr = new ClientController(primaryStage);
 			primaryStage.setTitle(title + ": Client View");
 			primaryStage.setScene(clientContr.getView().getTestView());
+
+			if(inlogModel.isPupil(inlogView.getName(), inlogView.getPass(), emfactory, em)){
+
+			}
+			else{
+				inlogView = new InlogView();
+				inlogModel = new InlogModel();
+			}
 		}
 
 		primaryStage.show();
