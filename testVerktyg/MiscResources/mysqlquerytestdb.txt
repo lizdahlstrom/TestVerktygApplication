@@ -60,3 +60,4 @@ VALUES
 "password" ,
  1);
 
+INSERT INTO `testdb`.`users` (`uName`, `uPass`, `isAdmin`) VALUES ('user', 'password', 0);
