@@ -51,17 +51,31 @@ public class InlogModel {
 	}
 
 	// Method isPupil there the method get the parameters mentioned below.
-	public boolean isPupil(String name, String pw, EntityManagerFactory emfactory, EntityManager entitymanager) {
+	public boolean isPupil(String name, String pw, EntityManagerFactory emfactory, EntityManager em) {
+		query = em.createNamedQuery("User.findUserByNameAndPw", User.class);
+		query.setParameter("uName", name);
+		query.setParameter("uPass", pw);
 
-		// Checking if user == isPupil if it is isAdmin == false.
-		if ((user = entitymanager.find(User.class, name)) != null && (pass = entitymanager.find(User.class, pw)) != null
-				&& user.getUId() == pass.getUId()) {
-			if ((user = entitymanager.find(User.class, user)).getIsAdmin() == 0) {
+		if (!(query.getSingleResult()).equals(null)) {
+			uId = (int) query.getSingleResult();
+			query = em.createNamedQuery("User.findUserAdminStatus", User.class);
+			query.setParameter("uId", uId);
+			if (query.getSingleResult().equals(0)) {
 				bool = true;
-				uId = entitymanager.find(User.class, user).getUId();
+
 			}
 
 		}
+
+		/*
+		 * // Checking if user == isPupil if it is isAdmin == false. if ((user =
+		 * em.find(User.class, name)) != null && (pass = em.find(User.class,
+		 * pw)) != null && user.getUId() == pass.getUId()) { if ((user =
+		 * em.find(User.class, user)).getIsAdmin() == 0) { bool = true; uId =
+		 * em.find(User.class, user).getUId(); }
+		 * 
+		 * }
+		 */
 
 		return bool;
 	}
