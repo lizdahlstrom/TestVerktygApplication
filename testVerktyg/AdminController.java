@@ -10,10 +10,12 @@ public class AdminController {
 	private AdminModel model;
 	private QuestionCreator q;
 	private Stage stage;
+	private int userId;
 
 	// Constructor
-	public AdminController(Stage stage, EntityManager em){
+	public AdminController(Stage stage, EntityManager em, int userId){
 		this.stage = stage;
+		this.userId = userId;
 		view = new AdminView();
 		//model = new AdminModel();
 

@@ -10,9 +10,11 @@ public class ClientController {
 	private ClientView view;
 	private Stage stage;
 	private TestReader testReader;
+	private int userId;
 
-	public ClientController(Stage stage, EntityManager eManager){
+	public ClientController(Stage stage, EntityManager eManager, int userId){
 		this.stage = stage;
+		this.userId = userId;
 		model = new ClientModel();
 		view = new ClientView();
 		testReader = new TestReader(eManager);
