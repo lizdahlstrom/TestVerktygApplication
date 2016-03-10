@@ -17,7 +17,6 @@ public class InlogView {
 	private String pass1 = "";
 	private Stage stage1;
 
-
 	public InlogView() {
 
 		BorderPane layout = new BorderPane();
@@ -25,16 +24,15 @@ public class InlogView {
 
 		VBox vbox = new VBox(30);
 
-		Label name = new Label("Name");
+		Label name = new Label("Password");
 		center.setTopAnchor(name, 30.0);
 		center.setLeftAnchor(name, 30.0);
-
 
 		TextField text = new TextField();
 		center.setTopAnchor(text, 65.0);
 		center.setLeftAnchor(text, 10.0);
 
-		Label pass = new Label("Password");
+		Label pass = new Label("Name");
 		center.setTopAnchor(pass, 40.0);
 		center.setLeftAnchor(pass, 40.0);
 
@@ -47,28 +45,27 @@ public class InlogView {
 		center.setLeftAnchor(btn, 350.0);
 		btn.setText("OK");
 
-
-		vbox.getChildren().addAll(name,pass);
+		vbox.getChildren().addAll(name, pass);
 		center.getChildren().addAll(vbox, text1, text, btn);
 
 		stage1 = new Stage();
 		stage1.setScene(new Scene(center, 400, 400));
 		stage1.setTitle("Log in");
 		btn.setOnAction(event -> {
-			name1=text.getText();
-			pass1=text1.getText();
+			name1 = text.getText();
+			pass1 = text1.getText();
 			stage1.close();
 		});
-		stage1.showAndWait(); //  Show and wait used for putting all other actions on hold
+		stage1.showAndWait(); // Show and wait used for putting all other
+								// actions on hold
 
 	}
 
-
-	public String getName (){
-		return name1;	
+	public String getName() {
+		return name1;
 	}
 
-	public String getPass (){
+	public String getPass() {
 		return pass1;
 	}
 }
