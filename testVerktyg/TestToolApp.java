@@ -15,8 +15,6 @@ import javafx.stage.Stage;
 
 public class TestToolApp extends Application {
 	//Instance variables
-	private ClientView clientView;
-	//	private AdminView adminView;
 	private InlogView inlogView;
 	private InlogModel inlogModel;
 	private ClientController clientContr;
@@ -32,9 +30,9 @@ public class TestToolApp extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		inlogView = new InlogView();
 		inlogModel = new InlogModel();
-		emfactory = Persistence.createEntityManagerFactory("EclipseLink_JPA");
+		inlogView = new InlogView();
+		emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
 		em = emfactory.createEntityManager();
 
 		Boolean isAdmin = inlogModel.isAdmin(inlogView.getName(), inlogView.getPass(), emfactory, em);
