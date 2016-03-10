@@ -41,6 +41,7 @@ public class InlogModel {
 				&& user.getUId() == pass.getUId()) {
 			if ((user = entitymanager.find(User.class, user)).getIsAdmin() == 0) {
 				bool = true;
+				uId = entitymanager.find(User.class, user).getUId();
 			}
 
 		}

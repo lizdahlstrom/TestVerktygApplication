@@ -6,10 +6,6 @@ import javax.persistence.EntityManager;
 
 public class AdminModel {
 	private ArrayList<Question> tests;
-	private Test test;
-	private Question questions;
-	private int testId = 0;
-	private String quest;
 
 	public AdminModel() {
 	}
@@ -18,13 +14,20 @@ public class AdminModel {
 		tests.add(question);
 	}
 
-	public void saveTest(EntityManager entitymanager) {
+	public void saveTest(EntityManager entitymanager, int uId) {
 
 		entitymanager.getTransaction().begin();
 		User users = new User();
-		Test testEntity = new Test();
+		Test test = new Test();
 		Question questions = new Question();
 		Choice options = new Choice();
+
+		users.setUId(uId);
+		entitymanager.persist(users);
+
+		test.setQuestions(tests);
+
+		entitymanager.persist(test);
 
 		tests.forEach((form) -> {
 
