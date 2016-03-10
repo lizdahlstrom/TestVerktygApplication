@@ -1,7 +1,6 @@
 package testVerktyg;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 import javafx.stage.Stage;
 
@@ -13,7 +12,7 @@ public class AdminController {
 	private Stage stage;
 
 	// Constructor
-	public AdminController(Stage stage, EntityManagerFactory emfactory, EntityManager em){
+	public AdminController(Stage stage, EntityManager em){
 		this.stage = stage;
 		view = new AdminView();
 		//model = new AdminModel();
@@ -26,7 +25,7 @@ public class AdminController {
 		});
 		// Save btn
 		view.getBtnSaveTest().setOnAction(e-> {
-			model.saveTest(emfactory, em);
+			model.saveTest(em);
 
 		});
 

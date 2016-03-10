@@ -1,5 +1,7 @@
 package testVerktyg;
 
+import javax.persistence.EntityManager;
+
 import javafx.stage.Stage;
 
 public class ClientController {
@@ -7,11 +9,13 @@ public class ClientController {
 	private ClientModel model;
 	private ClientView view;
 	private Stage stage;
+	private TestReader testReader;
 
-	public ClientController(Stage stage){
+	public ClientController(Stage stage, EntityManager eManager){
 		this.stage = stage;
 		model = new ClientModel();
 		view = new ClientView();
+		testReader = new TestReader(eManager);
 
 		view.getBtnNext().setOnAction(e->{
 

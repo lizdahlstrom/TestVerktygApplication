@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @Table(name="tests")
 @NamedQueries({ 
 	@NamedQuery(name = "Test.findAll", query = "SELECT t FROM Test t"), 
-	@NamedQuery(name = "Test.findByUserId", query = "SELECT t FROM Test t WHERE t.user.uId = :uId") 
+	@NamedQuery(name = "Test.findByUserId", query = "SELECT t FROM Test t WHERE t.uId = :uId") // Not sure if works
 })
 public class Test implements Serializable {
 	private static final long serialVersionUID = 1L;

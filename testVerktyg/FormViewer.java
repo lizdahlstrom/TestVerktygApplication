@@ -1,6 +1,7 @@
 package testVerktyg;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -14,6 +15,8 @@ public class FormViewer {
 	private String title;
 	private ArrayList <RadioButton> rbs;
 	private ArrayList <Label> strQuestions;
+	private List <Test> tests;
+
 
 	// Constructor
 	public FormViewer(Form form){
@@ -24,14 +27,8 @@ public class FormViewer {
 		return vbox;
 	}
 
-	public void setShownForm(Form form){
-		title = form.getQuery();
+	public void setShownForm(){
 
-		form.getOptions().forEach((e) ->
-		{
-			strQuestions.add(new Label(e));
-			rbs.add(new RadioButton());
-		});
 
 	}
 
