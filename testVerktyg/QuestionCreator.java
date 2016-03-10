@@ -2,6 +2,7 @@ package testVerktyg;
 
 import java.util.ArrayList;
 
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -26,6 +27,8 @@ public class QuestionCreator {
 
 	public QuestionCreator() {
 		startQuestionCreator();
+		
+
 	}
 
 	public void startQuestionCreator() {
@@ -37,21 +40,16 @@ public class QuestionCreator {
 		questionList = new VBox();
 		buttons = new HBox();
 		buttons.getChildren().addAll(btnTitle, txtQuestion, btnSave, btnFinish, btnAddOption);
-		// questionList.getChildren().addAll(btnTitle, txtQuestion,
-		// btnAddOption, btnSave, btnFinish);
+		questionList.getChildren().add(buttons);
 		questionList.setPrefSize(400, 400);
 
 		btnAddOption.setOnAction(event -> generateOptionField());
-		btnSave.setOnAction(event -> saveQuestion());
+		btnSave.setOnAction(event -> {
+			saveAndReset();
+		});
+		
+		
 		scene = new Scene(questionList, 400, 400);
-	}
-
-	public VBox getQuestionList() {
-		return questionList;
-	}
-
-	public Scene getScene() {
-		return scene;
 	}
 
 	private void generateOptionField() {
@@ -60,6 +58,20 @@ public class QuestionCreator {
 		ansField.add(txtOption);
 		ansCorr.add(radCorr);
 		questionList.getChildren().addAll(txtOption, radCorr);
+	}
+	
+	public void saveAndReset(){
+		saveQuestion();
+		// TODO: Reset graphic components here
+	}
+	
+
+	public VBox getQuestionList() {
+		return questionList;
+	}
+
+	public Scene getScene() {
+		return scene;
 	}
 
 	public Form getForm() {

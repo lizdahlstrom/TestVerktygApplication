@@ -46,7 +46,7 @@ public class InlogView {
 		Button btn = new Button();
 		center.setTopAnchor(btn, 350.0);
 		center.setLeftAnchor(btn, 350.0);
-		btn.setText("OK");
+		btn.setText("Log in");
 
 		vbox.getChildren().addAll(name, pass);
 		center.getChildren().addAll(vbox, txtName, txtPass, btn);

@@ -1,9 +1,14 @@
 package testVerktyg;
 
+import java.util.List;
+import java.util.Observable;
+
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -23,11 +28,12 @@ public class ClientView {
 	private AnchorPane topPane;
 	private VBox centerLayout;
 	private HBox topHbox;
+	private ListView<Test> listView;
 
 	// Creating buttons
-	private Button btnNext = new Button("Nï¿½sta");
+	private Button btnNext = new Button("Nästa");
 	private Button btnPrev = new Button("Tillbaka");
-	private Button btnSend = new Button("Lï¿½mna in");
+	private Button btnSend = new Button("Lämna in");
 	// Creating labels
 	private Label lblTitle;
 	private Label lblDescript;
@@ -40,11 +46,12 @@ public class ClientView {
 
 	// Methods
 	private void initComponents(){
-
+		listView = new ListView<>();
+		
 		//Labels
 		lblTitle = new Label("Starta test");
 		lblTitle.setFont(Font.font(32));
-		lblDescript = new Label("Starta testet genom att trycka pï¿½ Nï¿½sta..");
+		lblDescript = new Label("Välj test och tryck på Nästa..");
 		lblDescript.setFont(Font.font(16));
 		lblTimer = new Label("00:00");
 		lblTimer.setFont(Font.font(16));
@@ -61,6 +68,7 @@ public class ClientView {
 		bottomBtnPane.setLeftAnchor(btnPrev, 0.0);
 		bottomBtnPane.setRightAnchor(btnNext, 0.0); 
 		bottomBtnPane.setMaxHeight(100);
+		
 
 		btnPrev.setPrefSize(100, 50);
 		btnNext.setPrefSize(100, 50);
@@ -73,7 +81,7 @@ public class ClientView {
 		topPane = new AnchorPane(btnSend);
 		topPane.setRightAnchor(btnSend, 0.0);
 		centerLayout.setPadding(new Insets(30));
-		centerLayout.getChildren().addAll(lblTitle, lblDescript);
+		centerLayout.getChildren().addAll(lblTitle, lblDescript, listView);
 
 
 		layout.setTop(topPane);
@@ -82,8 +90,24 @@ public class ClientView {
 
 		testView = new Scene(layout, 500,600);		
 	}
-
+	
 	// Getters and setters
+	public ListView<Test> getListView() {
+		return listView;
+	}
+	
+	public void setListViewData(List<Test> tests) {
+			listView.setItems((ObservableList <Test>) tests); // casting observable list, not sure if safe !!
+	}
+
+	public Test getSelectedTest(){ // Returns selected item 
+		return listView.getSelectionModel().getSelectedItem();
+	}
+
+	public void setBtnPrev(Button btnPrev) {
+		this.btnPrev = btnPrev;
+	}
+
 	public Scene getTestView(){
 		return testView;
 	}

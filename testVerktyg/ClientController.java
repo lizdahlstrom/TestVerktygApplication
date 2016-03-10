@@ -12,26 +12,22 @@ public class ClientController {
 	private TestReader testReader;
 	private int userId;
 
-	public ClientController(Stage stage, EntityManager eManager, int userId){
+	public ClientController(Stage stage, EntityManager eManager, int userId) {
 		this.stage = stage;
 		this.userId = userId;
-		model = new ClientModel();
+		model = new ClientModel(eManager, userId);
 		view = new ClientView();
 		testReader = new TestReader(eManager);
 
-
-		//		view.getCenterLayout().getChildren().add(new FormViewer());
-
-		view.getBtnNext().setOnAction(e->{
-
+		view.getBtnNext().setOnAction(e -> {
 
 		});
 
-		view.getBtnPrev().setOnAction(e-> {
+		view.getBtnPrev().setOnAction(e -> {
 
 		});
 
-		view.getBtnSend().setOnAction(e-> {
+		view.getBtnSend().setOnAction(e -> {
 
 		});
 
@@ -44,6 +40,5 @@ public class ClientController {
 	public ClientView getView() {
 		return view;
 	}
-
 
 }
