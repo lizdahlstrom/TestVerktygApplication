@@ -3,6 +3,7 @@ package testVerktyg;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -37,7 +38,7 @@ public class InlogView {
 		center.setTopAnchor(pass, 40.0);
 		center.setLeftAnchor(pass, 40.0);
 
-		TextField txtPass = new TextField();
+		PasswordField txtPass = new PasswordField();
 		center.setTopAnchor(txtPass, 65.0);
 		center.setLeftAnchor(txtPass, 10.0);
 
