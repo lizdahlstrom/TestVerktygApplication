@@ -21,8 +21,8 @@ public class Testclass {
 		query = em.createNamedQuery("User.findUserByNameAndPw", User.class);
 		query.setParameter("uName", "någon");
 		query.setParameter("uPass", "hemligt");
-		query.setMaxResults(1000);
-		System.out.println("Användar idn är : " + query.getSingleResult());
+		user = (User) query.getSingleResult();
+		System.out.println("Användar idn är : " + user.getUId());
 
 		// List<Test> tests = new ArrayList<Test>();
 		// em.persist(tests);

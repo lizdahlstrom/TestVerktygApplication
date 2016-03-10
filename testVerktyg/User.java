@@ -28,7 +28,7 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int uId;
 
-	private byte isAdmin;
+	private Boolean isAdmin;
 
 	private String uName;
 
@@ -49,11 +49,11 @@ public class User implements Serializable {
 		this.uId = uId;
 	}
 
-	public byte getIsAdmin() {
+	public Boolean getIsAdmin() {
 		return this.isAdmin;
 	}
 
-	public void setIsAdmin(byte isAdmin) {
+	public void setIsAdmin(Boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 
