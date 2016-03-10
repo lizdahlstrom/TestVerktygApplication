@@ -24,6 +24,7 @@ public class TestToolApp extends Application {
 	private String title = "Testverktyg";
 	private EntityManagerFactory emfactory;
 	private EntityManager em;
+	private int userId;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -37,14 +38,15 @@ public class TestToolApp extends Application {
 		em = emfactory.createEntityManager();
 
 		Boolean isAdmin = inlogModel.isAdmin(inlogView.getName(), inlogView.getPass(), emfactory, em);
+		userId = inlogModel.getUId();
 
 		if(isAdmin){
-			adminContr = new AdminController(primaryStage, em, inlogModel.getUId());
+			adminContr = new AdminController(primaryStage, em, userId);
 			primaryStage.setTitle(title + ": Admin View");
 			primaryStage.setScene(adminContr.getView().getAdminScene());
 		}
 		else if(!isAdmin && inlogModel.isPupil(inlogView.getName(), inlogView.getPass(), emfactory, em)){
-			clientContr = new ClientController(primaryStage,em, inlogModel.getUId());
+			clientContr = new ClientController(primaryStage,em, userId);
 			primaryStage.setTitle(title + ": Client View");
 			primaryStage.setScene(clientContr.getView().getTestView());
 		}
