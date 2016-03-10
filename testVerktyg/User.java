@@ -12,23 +12,20 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 /**
  * The persistent class for the users database table.
  * 
  */
 @Entity
-@Table(name="users")
-@NamedQueries({ 
-	@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"), 
-	@NamedQuery(name = "User.findUserByNameAndPw", 
-	query = "SELECT u FROM User u WHERE u.uName =:uName AND u.uPass = :uPass") 
-})
+@Table(name = "users")
+@NamedQueries({ @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
+		@NamedQuery(name = "User.findUserByNameAndPw", query = "SELECT u FROM User u WHERE u.uName =:uName AND u.uPass = :uPass"),
+		@NamedQuery(name = "User.findUserAdminStatus", query = "SELECT u.isAdmin FROM User AS u WHERE u.uId =:uid") })
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int uId;
 
 	private byte isAdmin;
@@ -37,8 +34,8 @@ public class User implements Serializable {
 
 	private String uPass;
 
-	//bi-directional many-to-one association to Test
-	@OneToMany(mappedBy="user")
+	// bi-directional many-to-one association to Test
+	@OneToMany(mappedBy = "user")
 	private List<Test> tests;
 
 	public User() {
