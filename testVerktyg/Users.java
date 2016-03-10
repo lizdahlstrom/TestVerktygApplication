@@ -1,14 +1,19 @@
 package testVerktyg;
 
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import java.io.Serializable;
+import java.util.List;
+
 @Entity
-@Table
-public class Users {
+@Table(name="Users")
+public class Users implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,6 +22,9 @@ public class Users {
 	private String uPassWord;
 	private boolean isAdmin;
 
+	@OneToMany(mappedBy="users") // Join with TestEntity
+	private List <TestEntity> tests;
+	
 	public Users(int id, String name, String passWord, Boolean isAdmin) {
 		super();
 		this.uId = id;
