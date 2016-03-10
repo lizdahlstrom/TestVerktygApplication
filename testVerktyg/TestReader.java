@@ -1,9 +1,10 @@
 package testVerktyg;
 
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import java.util.List;
 
 public class TestReader {
 	// Instance variables
@@ -14,23 +15,21 @@ public class TestReader {
 	public TestReader(EntityManager eManager){
 		this.eManager = eManager;
 	}
-	
+
 	//Getters and setters
-	public TestEntity getTestById(int testId){
-		return eManager.find(TestEntity.class, testId);
+	public Test getTestById(int testId){
+		return eManager.find(Test.class, testId);
 	}
-	
-	public List <TestEntity> getTestsByUserId(int userId){
-		query = eManager.createNamedQuery("TestEntity.findByUserId", TestEntity.class);
+
+	public List <Test> getTestsByUserId(int userId){
+		query = eManager.createNamedQuery("TestEntity.findByUserId", Test.class);
 		query.setParameter("uId", userId);
 		return query.getResultList();
 	}
-	 
-	
-	public List <TestEntity> getAllTests(){
-		query = eManager.createNamedQuery("TestEntity.findAll", TestEntity.class);
+
+
+	public List <Test> getAllTests(){
+		query = eManager.createNamedQuery("TestEntity.findAll", Test.class);
 		return query.getResultList();
 	}
-	
-	
 }
