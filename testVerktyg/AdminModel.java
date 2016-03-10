@@ -3,44 +3,45 @@ package testVerktyg;
 import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 public class AdminModel {
-	private ArrayList<Form> test;
+	private ArrayList<Question> tests;
+	private Test test;
+	private Question questions;
 	private int testId = 0;
+	private String quest;
 
 	public AdminModel() {
 	}
 
-	public void makeTest(Form question) {
-		test.add(question);
+	public void makeTest(Question question) {
+		tests.add(question);
 	}
 
-	public void saveTest(EntityManagerFactory emfactory, EntityManager entitymanager) {
+	public void saveTest(EntityManager entitymanager) {
 
 		entitymanager.getTransaction().begin();
-		Users users = new Users();
-		TestEntity testEntity = new TestEntity();
-		Questions questions = new Questions();
-		Choices options = new Choices();
+		User users = new User();
+		Test testEntity = new Test();
+		Question questions = new Question();
+		Choice options = new Choice();
 
-		test.forEach((form) -> {
+		tests.forEach((form) -> {
 
-			testEntity.setTestId(0);
+			questions.setQuestion(form.getQuestion());
 
-			questions.setQuestion(form.getQuery());
-			questions.setTestEntity(testEntity);
 			entitymanager.persist(questions);
 
-			form.getOptions().forEach((option) -> {
-				options.setOption(option);
+			form.getChoices().forEach((option) -> {
+				options.setChoice(option.getChoice());
 
-				test.forEach((corr) -> {
-					if (options.getOption() == corr.getOptions().get(corr.getCorrAns())) {
-						options.setTrue(true);
+				form.getChoices().forEach((corr) -> {
+					if (options.getChoice() == corr.getChoice() && corr.getIsTrue() == 1) {
+						options.setIsTrue((byte) 1);
 
 					} else {
-						options.setTrue(false);
+						options.setIsTrue((byte) 0);
+						;
 					}
 
 				});
@@ -52,8 +53,8 @@ public class AdminModel {
 		entitymanager.getTransaction().commit();
 	}
 
-	public ArrayList<Form> getTest() {
-		return test;
+	public ArrayList<Question> getTests() {
+		return tests;
 	}
 
 }
