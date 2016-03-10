@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 //This class is for the inlogGUi with one "OK" button where the user can type in the username and password.
 
 public class InlogView {
-	
+
 	private String name1 = "";
 	private String pass1 = "";
 	private Stage stage1;
@@ -49,7 +49,7 @@ public class InlogView {
 
 
 		vbox.getChildren().addAll(name,pass);
-		center.getChildren().addAll(btn, vbox, text, text1);
+		center.getChildren().addAll(vbox, text1, text, btn);
 
 		stage1 = new Stage();
 		stage1.setScene(new Scene(center, 400, 400));
