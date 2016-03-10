@@ -27,7 +27,6 @@ public class TestReader {
 		return query.getResultList();
 	}
 
-
 	public List <Test> getAllTests(){
 		query = eManager.createNamedQuery("TestEntity.findAll", Test.class);
 		return query.getResultList();

@@ -19,6 +19,9 @@ public class ClientController {
 		view = new ClientView();
 		testReader = new TestReader(eManager);
 
+
+		//		view.getCenterLayout().getChildren().add(new FormViewer());
+
 		view.getBtnNext().setOnAction(e->{
 
 

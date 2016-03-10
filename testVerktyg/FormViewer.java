@@ -3,44 +3,47 @@ package testVerktyg;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 public class FormViewer {
 	//Instance variables
-	private VBox vbox;
+	private AnchorPane anchorPane;
 	private ArrayList <HBox> hbox;
 	private String title;
 	private ArrayList <RadioButton> rbs;
 	private ArrayList <Label> strQuestions;
-	private List <Test> tests;
+	private List <Test> testList;
 	private ListView <Test> listView;
 
-
 	// Constructor
-	public FormViewer(){
-		vbox = new VBox();
+	public FormViewer(List <Test> testList){
+		this.testList = testList;
+		setShownForm(testList);
+		generateAnchorPane();
 	}
 
-	public VBox getView(){
-		return vbox;
+	public AnchorPane getView(){
+		return anchorPane;
 	}
 
 	public void setShownForm(List <Test> testList){
 		listView = new ListView <>();
-		ObservableList<Test> oList = FXCollections.observableList(testList);
-		listView.setItems(oList);
-
-
+		//ObservableList<Test> oList = FXCollections.observableList(testList);
+		listView.setItems((ObservableList<Test>) testList);		
 	}
 
-	public ListView getListView(){
+	private void generateAnchorPane(){
+		anchorPane = new AnchorPane();
+		anchorPane.setPrefSize(300, 460);
+		anchorPane.getChildren().add(listView);
+	}
+
+	public ListView<Test> getListView(){
 		return listView;
 	}
-
 }
