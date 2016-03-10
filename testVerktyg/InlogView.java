@@ -24,21 +24,23 @@ public class InlogView {
 
 		VBox vbox = new VBox(30);
 
-		Label name = new Label("Password");
+		Label name = new Label("Name");
 		center.setTopAnchor(name, 30.0);
 		center.setLeftAnchor(name, 30.0);
 
-		TextField text = new TextField();
-		center.setTopAnchor(text, 65.0);
-		center.setLeftAnchor(text, 10.0);
+		TextField txtName = new TextField();
+		center.setTopAnchor(txtName, 20.0);
+		center.setLeftAnchor(txtName, 10.0);
 
-		Label pass = new Label("Name");
+
+		Label pass = new Label("Password");
 		center.setTopAnchor(pass, 40.0);
 		center.setLeftAnchor(pass, 40.0);
 
-		TextField text1 = new TextField();
-		center.setTopAnchor(text1, 20.0);
-		center.setLeftAnchor(text1, 10.0);
+		TextField txtPass = new TextField();
+		center.setTopAnchor(txtPass, 65.0);
+		center.setLeftAnchor(txtPass, 10.0);
+
 
 		Button btn = new Button();
 		center.setTopAnchor(btn, 350.0);
@@ -46,18 +48,18 @@ public class InlogView {
 		btn.setText("OK");
 
 		vbox.getChildren().addAll(name, pass);
-		center.getChildren().addAll(vbox, text1, text, btn);
+		center.getChildren().addAll(vbox, txtName, txtPass, btn);
 
 		stage1 = new Stage();
 		stage1.setScene(new Scene(center, 400, 400));
 		stage1.setTitle("Log in");
 		btn.setOnAction(event -> {
-			name1 = text.getText();
-			pass1 = text1.getText();
+			name1 = txtName.getText();
+			pass1 = txtPass.getText();
 			stage1.close();
 		});
 		stage1.showAndWait(); // Show and wait used for putting all other
-								// actions on hold
+		// actions on hold
 
 	}
 

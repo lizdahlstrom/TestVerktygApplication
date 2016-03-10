@@ -21,23 +21,23 @@ public class AdminView {
 
 	public void setDefaultView() {
 		center = new AnchorPane();
-		
+
 		// Creating button CreateQuest
 		btnCreateQuest = new Button();
 		center.setTopAnchor(btnCreateQuest, 20.0);
 		center.setLeftAnchor(btnCreateQuest, 20.0);
 		btnCreateQuest.setText("Create");
-	
+
 		// Creating button SaveTest
 		btnSaveTest = new Button();
 		center.setTopAnchor(btnSaveTest, 160.0);
 		center.setLeftAnchor(btnSaveTest, 20.0);
 		btnSaveTest.setText("Save");
-		
+
 		center.getChildren().addAll(btnCreateQuest, btnSaveTest);
-		
+
 		//Setting the scenes size
-		scene = new Scene(center, 400, 400);
+		scene = new Scene(center, 420, 420);
 	}
 	// Methods
 	public Scene getAdminScene() {
