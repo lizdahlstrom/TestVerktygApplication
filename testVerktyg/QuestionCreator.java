@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 public class QuestionCreator {
-	private Button btnTitle, btnSave, btnAddOption, btnSaveForm, btnFinish;
+	private Button btnTitle, btnSave, btnAddOption, btnFinish;
 	private TextField txtQuestion, txtOption;
 	private RadioButton radCorr;
 
@@ -30,11 +30,10 @@ public class QuestionCreator {
 		btnTitle = new Button("Title");
 		btnSave = new Button("Save");
 		btnFinish = new Button("Finish");
-		btnSaveForm = new Button("Save Form");
 		txtQuestion = new TextField();
 		btnAddOption = new Button("+");
 		questionList = new VBox();
-		questionList.getChildren().addAll(btnTitle, btnSave, txtQuestion, btnAddOption, btnSaveForm, btnFinish);
+		questionList.getChildren().addAll(btnTitle, txtQuestion, btnAddOption, btnSave, btnFinish);
 		questionList.setPrefSize(400, 400);
 
 		btnAddOption.setOnAction(event -> generateOptionField());
@@ -98,10 +97,6 @@ public class QuestionCreator {
 
 	public Button getBtnAddOption() {
 		return btnAddOption;
-	}
-
-	public Button getBtnSaveForm() {
-		return btnSaveForm;
 	}
 
 }

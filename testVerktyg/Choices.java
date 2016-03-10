@@ -20,12 +20,11 @@ public class Choices {
 	@ManyToOne
 	private Questions questions;
 
-	public Choices(int optionId, String option, boolean isTrue, Questions questions) {
+	public Choices(int optionId, String option, boolean isTrue) {
 		super();
 		this.choiceId = optionId;
 		this.choice = option;
 		this.isTrue = isTrue;
-		this.questions = questions;
 
 	}
 
@@ -59,6 +58,10 @@ public class Choices {
 
 	public Questions getQuestions() {
 		return questions;
+	}
+
+	public void setQuestions(Questions questions) {
+		this.questions = questions;
 	}
 
 }

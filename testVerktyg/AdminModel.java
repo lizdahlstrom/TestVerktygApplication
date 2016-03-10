@@ -19,13 +19,17 @@ public class AdminModel {
 	public void saveTest(EntityManagerFactory emfactory, EntityManager entitymanager) {
 
 		entitymanager.getTransaction().begin();
-
+		Users users = new Users();
+		TestEntity testEntity = new TestEntity();
 		Questions questions = new Questions();
 		Choices options = new Choices();
 
 		test.forEach((form) -> {
 
+			testEntity.setTestId(0);
+
 			questions.setQuestion(form.getQuery());
+			questions.setTestEntity(testEntity);
 			entitymanager.persist(questions);
 
 			form.getOptions().forEach((option) -> {
