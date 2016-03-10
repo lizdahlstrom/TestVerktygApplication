@@ -9,15 +9,17 @@ public class InlogModel {
 	private User user = new User();
 	private User pass = new User();
 	private Boolean bool = false;
+	private int uId;
 
 	// Method isAdmin there the method get the parameters mentioned below.
-	public boolean isAdmin(String name, String pw, EntityManagerFactory emfactory, EntityManager entitymanager) {
+	public Boolean isAdmin(String name, String pw, EntityManagerFactory emfactory, EntityManager entitymanager) {
 
 		// Checking if name and password == true or != null
 		if ((user = entitymanager.find(User.class, name)) != null && (pass = entitymanager.find(User.class, pw)) != null
 				&& user.getUId() == pass.getUId()) {
 			// Checking if user == isAdmin
 			if ((user = entitymanager.find(User.class, user)).getIsAdmin() == 1) {
+				uId = entitymanager.find(User.class, user).getUId();
 				bool = true;
 			}
 
@@ -25,6 +27,10 @@ public class InlogModel {
 
 		return bool;
 
+	}
+
+	public int getUId() {
+		return uId;
 	}
 
 	// Method isPupil there the method get the parameters mentioned below.
