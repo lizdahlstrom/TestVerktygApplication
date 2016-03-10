@@ -27,7 +27,7 @@ public class AdminController {
 		});
 		// Save btn
 		view.getBtnSaveTest().setOnAction(e-> {
-			model.saveTest(em);
+			model.saveTest(em, userId);
 
 		});
 
