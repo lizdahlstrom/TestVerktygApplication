@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class QuestionCreator {
@@ -16,6 +17,7 @@ public class QuestionCreator {
 	private ArrayList<TextField> ansField = new ArrayList<TextField>();
 	private ArrayList<RadioButton> ansCorr = new ArrayList<RadioButton>();
 	private VBox questionList;
+	private HBox buttons;
 
 	private ArrayList<String> options = new ArrayList<>();
 	private Form question = new Form();
@@ -28,12 +30,15 @@ public class QuestionCreator {
 
 	public void startQuestionCreator() {
 		btnTitle = new Button("Title");
-		btnSave = new Button("Save");
-		btnFinish = new Button("Finish");
+		btnSave = new Button("Save Question");
+		btnFinish = new Button("Finish Test");
 		txtQuestion = new TextField();
 		btnAddOption = new Button("+");
 		questionList = new VBox();
-		questionList.getChildren().addAll(btnTitle, txtQuestion, btnAddOption, btnSave, btnFinish);
+		buttons = new HBox();
+		buttons.getChildren().addAll(btnTitle, txtQuestion, btnSave, btnFinish, btnAddOption);
+		// questionList.getChildren().addAll(btnTitle, txtQuestion,
+		// btnAddOption, btnSave, btnFinish);
 		questionList.setPrefSize(400, 400);
 
 		btnAddOption.setOnAction(event -> generateOptionField());

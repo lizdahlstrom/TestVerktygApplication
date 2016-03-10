@@ -2,10 +2,6 @@
 
 	<persistence-unit name="Eclipselink_JPA" transaction-type="RESOURCE_LOCAL">
 
-		<class>testVerktyg.Users</class>
-		<class>testVerktyg.Choices</class>
-		<class>testVerktyg.Questions</class>
-		<class>testVerktyg.TestEntity</class>
         <class>testVerktyg.Choice</class>
         <class>testVerktyg.Question</class>
         <class>testVerktyg.Test</class>
