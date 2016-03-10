@@ -17,16 +17,15 @@ public class InlogModel {
 	// Method isAdmin there the method get the parameters mentioned below.
 	public Boolean isAdmin(String name, String pw, EntityManagerFactory emfactory, EntityManager em) {
 		query = em.createNamedQuery("User.findUserByNameAndPw", User.class);
+
 		query.setParameter("uName", name);
 		query.setParameter("uPass", pw);
 
 		// Checking if name and password == true or != null
+		user = (User) query.getSingleResult();
+		if (!user.equals(null)) {
 
-		if (!(query.getSingleResult()).equals(null)) {
-			uId = (int) query.getSingleResult();
-			query = em.createNamedQuery("User.findUserAdminStatus", User.class);
-			query.setParameter("uId", uId);
-			if (query.getSingleResult().equals(1)) {
+			if (user.getIsAdmin() == 1) {
 				bool = true;
 
 			}
@@ -56,11 +55,9 @@ public class InlogModel {
 		query.setParameter("uName", name);
 		query.setParameter("uPass", pw);
 
-		if (!(query.getSingleResult()).equals(null)) {
-			uId = (int) query.getSingleResult();
-			query = em.createNamedQuery("User.findUserAdminStatus", User.class);
-			query.setParameter("uId", uId);
-			if (query.getSingleResult().equals(0)) {
+		if (!user.equals(null)) {
+			user = (User) query.getSingleResult();
+			if (user.getIsAdmin() == 0) {
 				bool = true;
 
 			}
