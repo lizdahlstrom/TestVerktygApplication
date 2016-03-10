@@ -23,14 +23,14 @@ public class InlogModel {
 
 		// Checking if name and password == true or != null
 		user = (User) query.getSingleResult();
-		if (!user.equals(null)) {
+//		if (!user.equals(null)) {
 
-			if (user.getIsAdmin() == 1) {
+			if (user.getIsAdmin() == true) {
 				bool = true;
 
 			}
 
-		}
+//		}
 		/*
 		 * if ((user = em.find(User.class, query.getFirstResult())) != null &&
 		 * (pass = em.find(User.class, pw)) != null && user.getUId() ==
@@ -57,7 +57,7 @@ public class InlogModel {
 
 		if (!user.equals(null)) {
 			user = (User) query.getSingleResult();
-			if (user.getIsAdmin() == 0) {
+			if (user.getIsAdmin() == false) {
 				bool = true;
 
 			}
