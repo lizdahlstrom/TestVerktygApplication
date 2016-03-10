@@ -1,0 +1,62 @@
+CREATE DATABASE testdb (
+);
+
+CREATE TABLE `testdb`.`users` (
+  `uId` INT NOT NULL AUTO_INCREMENT,
+  `uName` VARCHAR(30) NULL,
+  `uPass` VARCHAR(30) NULL,
+  `isAdmin` BIT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`uId`));
+
+
+CREATE TABLE `testdb`.`tests` (
+  `testId` INT NOT NULL AUTO_INCREMENT,
+  `uId` INT NULL,
+  PRIMARY KEY (`testId`),
+  INDEX `uId_idx` (`uId` ASC),
+  CONSTRAINT `uId`
+    FOREIGN KEY (`uId`)
+    REFERENCES `testdb`.`users` (`uId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+CREATE TABLE `testdb`.`questions` (
+  `questId` INT NOT NULL AUTO_INCREMENT,
+  `question` VARCHAR(45) NOT NULL,
+  `testId` INT NULL,
+  `questions` VARCHAR(45) NULL,
+  PRIMARY KEY (`questId`),
+  INDEX `testId_idx` (`testId` ASC),
+  CONSTRAINT `testId`
+    FOREIGN KEY (`testId`)
+    REFERENCES `testdb`.`tests` (`testId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+CREATE TABLE `testdb`.`choices` (
+  `choiceId` INT NOT NULL AUTO_INCREMENT,
+  `questionId` INT NULL,
+  `choice` VARCHAR(45) NOT NULL,
+  `isTrue` BIT(1) NULL,
+  PRIMARY KEY (`choiceId`),
+  INDEX `questionId_idx` (`questionId` ASC),
+  CONSTRAINT `questionId`
+    FOREIGN KEY (`questionId`)
+    REFERENCES `testdb`.`questions` (`questId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+INSERT INTO `testdb`.`users`
+(`uId`,
+`uName`,
+`uPass`,
+`isAdmin`)
+VALUES
+(1,
+"admin",
+"password" ,
+ 1);
+
