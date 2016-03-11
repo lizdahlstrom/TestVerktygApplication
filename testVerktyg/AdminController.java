@@ -2,7 +2,6 @@ package testVerktyg;
 
 import javax.persistence.EntityManager;
 
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class AdminController {
@@ -19,21 +18,20 @@ public class AdminController {
 		this.userId = userId;
 		view = new AdminView();
 		q = new QuestionCreator();
-		//model = new AdminModel();
+		model = new AdminModel();
 
 		// Create question button
 		view.getBtnCreateQuest().setOnAction(e -> {
 			q = new QuestionCreator();
 			view.getCenter().getChildren().clear(); // clears anchorpane 
 			view.getCenter().getChildren().add(q.getQuestionList()); // adds vbox
-
 		});
 		// Save btn
 		view.getBtnSaveTest().setOnAction(e-> {
 			model.saveTest(em, userId);
 
 		});
-		
+
 		q.getBtnFinish().setOnAction(e ->{
 			q.saveAndReset();
 			view.getCenter().getChildren().clear();
