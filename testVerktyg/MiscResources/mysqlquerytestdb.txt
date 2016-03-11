@@ -25,7 +25,6 @@ CREATE TABLE `testdb`.`questions` (
   `questId` INT NOT NULL AUTO_INCREMENT,
   `question` VARCHAR(45) NOT NULL,
   `testId` INT NULL,
-  `questions` VARCHAR(45) NULL,
   PRIMARY KEY (`questId`),
   INDEX `testId_idx` (`testId` ASC),
   CONSTRAINT `testId`
