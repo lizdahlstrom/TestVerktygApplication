@@ -37,8 +37,8 @@
          <children>
             <ButtonBar layoutX="-14.0" layoutY="3.0" prefHeight="40.0" prefWidth="655.0">
                <buttons>
-                <Button mnemonicParsing="false" text="Previous" />
-                  <Button layoutX="575.0" layoutY="18.0" mnemonicParsing="false" text="Next" />
+                <Button fx:id="btnPrev" mnemonicParsing="false" text="Previous" />
+                  <Button fx:id="btnNext" layoutX="575.0" layoutY="18.0" mnemonicParsing="false" text="Next" />
                </buttons>
                <padding>
                   <Insets bottom="6.0" left="16.0" right="16.0" />
