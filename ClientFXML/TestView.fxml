@@ -9,7 +9,7 @@
       <Insets bottom="16.0" left="40.0" right="40.0" top="22.0" />
    </padding>
    <children>
-      <Label text="QuestionLabel" />
-      <VBox prefHeight="266.0" prefWidth="320.0" />
+      <Label fx:id="lblQuestion" prefHeight="17.0" prefWidth="127.0" />
+      <VBox fx:id="centerVbox" prefHeight="266.0" prefWidth="320.0" />
    </children>
 </VBox>
