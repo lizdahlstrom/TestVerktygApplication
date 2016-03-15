@@ -1,7 +1,6 @@
 package testVerktyg;
 
 import java.util.List;
-import java.util.Observable;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -47,7 +46,7 @@ public class ClientView {
 	// Methods
 	private void initComponents(){
 		listView = new ListView<>();
-		
+
 		//Labels
 		lblTitle = new Label("Starta test");
 		lblTitle.setFont(Font.font(32));
@@ -68,7 +67,6 @@ public class ClientView {
 		bottomBtnPane.setLeftAnchor(btnPrev, 0.0);
 		bottomBtnPane.setRightAnchor(btnNext, 0.0); 
 		bottomBtnPane.setMaxHeight(100);
-		
 
 		btnPrev.setPrefSize(100, 50);
 		btnNext.setPrefSize(100, 50);
@@ -90,14 +88,14 @@ public class ClientView {
 
 		testView = new Scene(layout, 500,600);		
 	}
-	
+
 	// Getters and setters
 	public ListView<Test> getListView() {
 		return listView;
 	}
-	
+
 	public void setListViewData(List<Test> tests) {
-			listView.setItems((ObservableList <Test>) tests); // casting observable list, not sure if safe !!
+		listView.setItems((ObservableList <Test>) tests); // casting observable list, not sure if safe !!
 	}
 
 	public Test getSelectedTest(){ // Returns selected item 

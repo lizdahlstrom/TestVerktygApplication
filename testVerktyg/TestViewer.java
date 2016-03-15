@@ -7,10 +7,11 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
-public class FormViewer {
+public class TestViewer {
 	//Instance variables
 	private AnchorPane anchorPane;
 	private ArrayList <HBox> hbox;
@@ -20,8 +21,11 @@ public class FormViewer {
 	private List <Test> testList;
 	private ListView <Test> listView;
 
+	private ToggleGroup tGroup;
+	private Test test;
+
 	// Constructor
-	public FormViewer(List <Test> testList){
+	public TestViewer(List <Test> testList){
 		this.testList = testList;
 		setShownForm(testList);
 		generateAnchorPane();
@@ -45,5 +49,23 @@ public class FormViewer {
 
 	public ListView<Test> getListView(){
 		return listView;
+	}
+
+	public void generateTestForm(int testId){
+		tGroup = new ToggleGroup();
+
+		testList.forEach((currTest) -> { // Use hashmap instead which enables map.get(id) method?? 
+			if(currTest.getTestId()== testId ){
+				test = currTest;
+			}
+		});
+
+		test.getQuestions().forEach((question) -> {
+			question.getQuestion();
+			question.getChoices().forEach((choice)-> {
+
+
+			});
+		});
 	}
 }
