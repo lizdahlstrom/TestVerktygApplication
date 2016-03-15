@@ -1,35 +1,43 @@
 package testVerktyg;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the questions database table.
  * 
  */
 @Entity
-@Table(name="questions")
-@NamedQuery(name="Question.findAll", query="SELECT q FROM Question q")
+@Table(name = "questions")
+@NamedQuery(name = "Question.findAll", query = "SELECT q FROM Question q")
 public class Question implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int questId;
 
 	private String question;
 
-	private String questions;
+	// private String questions;
 
-	//bi-directional many-to-one association to Choice
-	@OneToMany(mappedBy="question")
+	// bi-directional many-to-one association to Choice
+	@OneToMany(mappedBy = "question")
 	private List<Choice> choices;
 
-	//bi-directional many-to-one association to Test
+	// bi-directional many-to-one association to Test
 	@ManyToOne
-	@JoinColumn(name="testId")
+	@JoinColumn(name = "testId")
 	private Test test;
 
 	public Question() {
@@ -51,14 +59,12 @@ public class Question implements Serializable {
 		this.question = question;
 	}
 
-	public String getQuestions() {
-		return this.questions;
-	}
-
-	public void setQuestions(String questions) {
-		this.questions = questions;
-	}
-
+	/*
+	 * public String getQuestions() { return this.questions; }
+	 * 
+	 * public void setQuestions(String questions) { this.questions = questions;
+	 * }
+	 */
 	public List<Choice> getChoices() {
 		return this.choices;
 	}

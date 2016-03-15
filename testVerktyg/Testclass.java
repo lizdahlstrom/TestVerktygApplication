@@ -1,18 +1,24 @@
 package testVerktyg;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -22,6 +28,12 @@ public class Testclass implements Initializable {
 	private static EntityManagerFactory emfactory;
 	private static EntityManager em;
 	private static Query query;
+	// private QuestionWindowController questionWindow;
+	private double y = 40;
+	private TextField ans;
+	private ArrayList<TextField> ansList1 = new ArrayList<>();
+	private ObservableList<TextField> ansList; // = new ObservableList<>();
+	private ArrayList<String> ansSList;
 
 	@FXML // fx:id ="mainWindow"
 	private Pane mainWindow;
@@ -35,11 +47,17 @@ public class Testclass implements Initializable {
 	@FXML // fx:id ="newTest"
 	private MenuItem newTest;
 
-	@FXML // fx:id ="QuestionWindow"
+	@FXML // fx:id ="questionWindow"
 	private AnchorPane questionWindow;
 
-	@FXML // fx:id ="blankPane"
-	private AnchorPane blankPane;
+	@FXML // fx:id ="btnAddAns"
+	private Button btnAddAns;
+
+	@FXML // fx:id ="cmbCorrAns"
+	private ComboBox cmbCorrAns;
+
+	@FXML // fx:id = "txtFirstField"
+	private TextField txtFirstField;
 
 	public static void main(String[] args) {
 
@@ -77,21 +95,58 @@ public class Testclass implements Initializable {
 
 		newTest.setOnAction((value) -> {
 			System.out.println("TEst");
-			try {
-				questionWindow = (AnchorPane) FXMLLoader
-						.load(TestClassMain.class.getResource("adminViews/questionWindow.fxml"));
-			} catch (Exception e) {
-			}
-			// mainWindow.getChildren().remove(blankPane);
-			mainWindow.getChildren().add(questionWindow);
+			questionWindow.setVisible(true);
 			System.out.println(mainWindow.getChildren());
 		});
 
-		mainWindow.setOnMouseEntered((event) -> {
-			// System.out.println("TESTINGTESTINGTESTING");
+		btnAddAns.setOnAction((value) -> {
+			if (ansList.size() >= 6) {
 
+			} else {
+
+				ans = new TextField();
+				ans.setPrefWidth(353);
+				mainWindow.getChildren().add(ans);
+				ans.setLayoutX(104);
+				ans.setLayoutY(242 + y);
+				y = y + 40;
+				ansList.add(ans);
+
+			}
+		});
+		ansList1.add(txtFirstField);
+		ansList = FXCollections.observableList(ansList1);
+
+		ansList.addListener(new ListChangeListener<TextField>() {
+
+			@Override
+			public void onChanged(ListChangeListener.Change change) {
+				while (change.next()) {
+					if (change.wasAdded()) {
+						cmbCorrAns.getItems().clear();
+						ansList.forEach((item) -> {
+							if (!item.getText().isEmpty()) {
+								cmbCorrAns.getItems().add(item.getText());
+								System.out.println(item.getText());
+							}
+						});
+
+					}
+
+					if (change.wasUpdated()) {
+						cmbCorrAns.getItems().setAll(getAnsStrings());
+					}
+				}
+			}
 		});
 
 	}
 
+	public ArrayList<String> getAnsStrings() {
+		ansList.forEach((item) -> {
+			ansSList.add(item.getText());
+
+		});
+		return ansSList;
+	}
 }

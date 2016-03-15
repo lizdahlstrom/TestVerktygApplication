@@ -1,12 +1,16 @@
 package testVerktyg;
 
+import java.io.IOException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -27,6 +31,7 @@ public class TestToolApp extends Application {
 	private EntityManagerFactory emfactory;
 	private EntityManager em;
 	private int userId;
+	Scene adminScene;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -35,6 +40,8 @@ public class TestToolApp extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
+
+		// FXMLLoader.load(TestToolApp.class.getResource("adminViews/AdminView.fxml"));
 
 		emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
 		em = emfactory.createEntityManager();
@@ -50,6 +57,18 @@ public class TestToolApp extends Application {
 		primaryStage.show();
 	}
 
+	public void showAdminView() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(TestToolApp.class.getResource("adminViews/AdminView.fxml"));
+			Pane adminWindow = (Pane) loader.load();
+			adminScene = new Scene(adminWindow);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void loginStart() {
 		inlogModel = new InlogModel();
 		inlogView = new InlogView();
@@ -59,9 +78,17 @@ public class TestToolApp extends Application {
 			userId = inlogModel.getUId();
 
 			if (isAdmin) {
-				adminContr = new AdminController(primaryStage, em, userId);
+				adminContr = new AdminController(em, userId); //
+				// primaryStage,
+				// em,
+				// userId);
+				// adminContr.setEm(em);
+				// adminContr.setuId(userId);
 				primaryStage.setTitle(title + ": Admin View");
-				primaryStage.setScene(adminContr.getView().getAdminScene());
+				// primaryStage.setScene(adminContr.getView().getAdminScene());
+				showAdminView();
+				primaryStage.setScene(adminScene);
+
 			} else if (!isAdmin && inlogModel.isPupil(inlogView.getName(), inlogView.getPass(), emfactory, em)) {
 				clientContr = new ClientController(primaryStage, em, userId);
 				primaryStage.setTitle(title + ": Client View");
