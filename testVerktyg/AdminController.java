@@ -1,7 +1,6 @@
 package testVerktyg;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -21,7 +20,7 @@ public class AdminController {
 	private int uId;
 	private Question question = new Question();
 	private Choice choice;
-	private List<Choice> choices = new ArrayList<>();
+	private ArrayList<Choice> choices = new ArrayList<>();
 
 	private ArrayList<String> options = new ArrayList<>();
 
@@ -105,7 +104,6 @@ public class AdminController {
 		btnSaveQuestion.setOnAction((value) -> {
 			question.setQuestion(txtQueryField.getText());
 			ansList.forEach((tf) -> {
-				System.out.println("testing : " + tf.getText());
 				if (!tf.getText().isEmpty() && !tf.getText().equals(null)) {
 					options.add(tf.getText());
 
@@ -123,8 +121,8 @@ public class AdminController {
 				choices.add(choice);
 
 			});
-			question.setChoices(choices);
-			model.makeTest(question);
+			// question.setChoices(choices);
+			model.makeTest(question, choices);
 			// cleanTestmaker();
 		});
 
@@ -163,7 +161,6 @@ public class AdminController {
 						ansList.forEach((item) -> {
 							if (!item.getText().isEmpty()) {
 								cmbCorrAns.getItems().add(item.getText());
-								System.out.println(item.getText());
 							}
 						});
 

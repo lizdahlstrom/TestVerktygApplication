@@ -1,7 +1,6 @@
 package testVerktyg;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -32,8 +30,8 @@ public class Question implements Serializable {
 	// private String questions;
 
 	// bi-directional many-to-one association to Choice
-	@OneToMany(mappedBy = "question")
-	private List<Choice> choices;
+	// @OneToMany(mappedBy = "question")
+	// private List<Choice> choices;
 
 	// bi-directional many-to-one association to Test
 	@ManyToOne
@@ -64,28 +62,23 @@ public class Question implements Serializable {
 	 * 
 	 * public void setQuestions(String questions) { this.questions = questions;
 	 * }
+	 *//*
+		 * public List<Choice> getChoices() { return this.choices; }
+		 * 
+		 * public void setChoices(List<Choice> choices) { this.choices =
+		 * choices; }
+		 */
+	/*
+	 * public Choice addChoice(Choice choice) { getChoices().add(choice);
+	 * choice.setQuestion(this);
+	 * 
+	 * return choice; }
+	 * 
+	 * public Choice removeChoice(Choice choice) { getChoices().remove(choice);
+	 * choice.setQuestion(null);
+	 * 
+	 * return choice; }
 	 */
-	public List<Choice> getChoices() {
-		return this.choices;
-	}
-
-	public void setChoices(List<Choice> choices) {
-		this.choices = choices;
-	}
-
-	public Choice addChoice(Choice choice) {
-		getChoices().add(choice);
-		choice.setQuestion(this);
-
-		return choice;
-	}
-
-	public Choice removeChoice(Choice choice) {
-		getChoices().remove(choice);
-		choice.setQuestion(null);
-
-		return choice;
-	}
 
 	public Test getTest() {
 		return this.test;
