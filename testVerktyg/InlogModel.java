@@ -26,6 +26,7 @@ public class InlogModel {
 		try {
 			// Checking if name and password == true or != null
 			user = (User) query.getSingleResult();
+			setUId(user.getUId());
 			// if (!user.equals(null)) {
 
 			if (user.getIsAdmin() == true) {
@@ -39,9 +40,6 @@ public class InlogModel {
 		return bool;
 	}
 
-	public int getUId() {
-		return uId;
-	}
 
 	// Method isPupil there the method get the parameters mentioned below.
 	public boolean isPupil(String name, String pw, EntityManagerFactory emfactory, EntityManager em) {
@@ -51,6 +49,7 @@ public class InlogModel {
 		try {
 			if (!user.equals(null)) {
 				user = (User) query.getSingleResult();
+				setUId(user.getUId());
 				if (user.getIsAdmin() == false) {
 					bool = true;
 				}
@@ -78,5 +77,13 @@ public class InlogModel {
 
 	public String getErrorMsg() {
 		return errorMsg;
+	}
+
+	public void setUId(int uId){
+		this.uId = uId;
+	}
+
+	public int getUId() {
+		return uId;
 	}
 }

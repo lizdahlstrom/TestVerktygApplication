@@ -1,18 +1,17 @@
 package testVerktyg;
 
-import java.io.IOException;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import testVerktyg.ClientFXML.CIientViewController;
 
 /**
  *
@@ -24,14 +23,18 @@ public class TestToolApp extends Application {
 	// Instance variables
 	private InlogView inlogView;
 	private InlogModel inlogModel;
-	private ClientController clientContr;
+	private CIientViewController clientContr;
 	private AdminController adminContr;
 	private String title = "Testverktyg";
 	private Stage primaryStage;
 	private EntityManagerFactory emfactory;
 	private EntityManager em;
 	private int userId;
-	Scene adminScene;
+	//	Scene adminScene;
+	private Scene scene;
+
+	private final String adminViewPath = "adminViews/AdminView.fxml";
+	private final String clientViewPath = "ClientFXML/ClientView.fxml";
 
 	public static void main(String[] args) {
 		launch(args);
@@ -57,18 +60,6 @@ public class TestToolApp extends Application {
 		primaryStage.show();
 	}
 
-	public void showAdminView() {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(TestToolApp.class.getResource("adminViews/AdminView.fxml"));
-			Pane adminWindow = (Pane) loader.load();
-			adminScene = new Scene(adminWindow);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public void loginStart() {
 		inlogModel = new InlogModel();
 		inlogView = new InlogView();
@@ -78,21 +69,16 @@ public class TestToolApp extends Application {
 			userId = inlogModel.getUId();
 
 			if (isAdmin) {
-				adminContr = new AdminController(); //
-				// primaryStage,
-				// em,
-				// userId);
-				// adminContr.setEm(em);
-				// adminContr.setuId(userId);
+				adminContr = new AdminController(userId);
 				primaryStage.setTitle(title + ": Admin View");
-				// primaryStage.setScene(adminContr.getView().getAdminScene());
-				showAdminView();
-				primaryStage.setScene(adminScene);
+				loadView(adminViewPath);
+				primaryStage.setScene(scene);
 
 			} else if (!isAdmin && inlogModel.isPupil(inlogView.getName(), inlogView.getPass(), emfactory, em)) {
-				clientContr = new ClientController(primaryStage, em, userId);
+				clientContr = new CIientViewController();
 				primaryStage.setTitle(title + ": Client View");
-				primaryStage.setScene(clientContr.getView().getTestView());
+				loadView(clientViewPath);
+				primaryStage.setScene(scene);
 			} else {
 				System.out.println(inlogModel.getErrorMsg());
 			}
@@ -100,6 +86,18 @@ public class TestToolApp extends Application {
 			System.out.println("Login failed... invalid format for input.");
 		}
 		primaryStage.show();
+	}
+
+	public void loadView(String path){
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(TestToolApp.class.getResource(path));
+			Parent root = loader.load();
+			scene = new Scene(root);
+			System.out.println("Sucessfully loaded view...");
+		} catch (Exception e) {
+			System.out.println("Exception loading view: " + e);
+		}
 	}
 
 	@Override
