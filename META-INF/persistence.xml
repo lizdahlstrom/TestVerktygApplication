@@ -6,6 +6,7 @@
         <class>testVerktyg.Question</class>
         <class>testVerktyg.Test</class>
         <class>testVerktyg.User</class>
+        <class>testVerktyg.UserTest</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/testdb"/>

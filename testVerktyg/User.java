@@ -14,14 +14,14 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the users database table.
- * 
+ *
  */
 @Entity
 @Table(name = "users")
 @NamedQueries({ @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
-	@NamedQuery(name = "User.findUserByNameAndPw", query = "SELECT u FROM User u WHERE u.uName =:uName AND u.uPass = :uPass"),
-	@NamedQuery(name = "User.findUserAdminStatus", query = "SELECT u.isAdmin FROM User AS u WHERE u.uId =:uId"),
-	@NamedQuery(name = "User.findUserById", query = "SELECT u FROM User u WHERE u.uId =:uId") })
+		@NamedQuery(name = "User.findUserByNameAndPw", query = "SELECT u FROM User u WHERE u.uName =:uName AND u.uPass = :uPass"),
+		@NamedQuery(name = "User.findUserAdminStatus", query = "SELECT u.isAdmin FROM User AS u WHERE u.uId =:uId"),
+		@NamedQuery(name = "User.findUserById", query = "SELECT u FROM User u WHERE u.uId =:uId") })
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 

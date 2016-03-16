@@ -14,13 +14,12 @@ import javax.persistence.Table;
 
 /**
  * The persistent class for the tests database table.
- * 
+ *
  */
 @Entity
 @Table(name = "tests")
 @NamedQueries({ @NamedQuery(name = "Test.findAll", query = "SELECT t FROM Test t"),
-	@NamedQuery(name = "Test.findByUserId", query = "SELECT t FROM Test t WHERE t.user.uId = :uId") 
-})
+		@NamedQuery(name = "Test.findByUserId", query = "SELECT t FROM Test t WHERE t.user.uId = :uId") })
 public class Test implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -49,18 +48,18 @@ public class Test implements Serializable {
 	}
 	/*
 	 * public List<Question> getQuestions() { return this.questions; }
-	 * 
+	 *
 	 * public void setQuestions(List<Question> questions) { this.questions =
 	 * questions; }
-	 * 
+	 *
 	 * public Question addQuestion(Question question) {
 	 * getQuestions().add(question); question.setTest(this);
-	 * 
+	 *
 	 * return question; }
-	 * 
+	 *
 	 * public Question removeQuestion(Question question) {
 	 * getQuestions().remove(question); question.setTest(null);
-	 * 
+	 *
 	 * return question; }
 	 */
 

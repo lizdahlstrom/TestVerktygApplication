@@ -12,6 +12,7 @@ CREATE TABLE `testdb`.`users` (
 CREATE TABLE `testdb`.`tests` (
   `testId` INT NOT NULL AUTO_INCREMENT,
   `uId` INT NULL,
+  `testTitle` VARCHAR(45) NULL,
   PRIMARY KEY (`testId`),
   INDEX `uId_idx` (`uId` ASC),
   CONSTRAINT `uId`
@@ -48,6 +49,25 @@ CREATE TABLE `testdb`.`choices` (
     ON UPDATE NO ACTION);
 
 
+CREATE TABLE `testdb`.`user_test` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `userId` INT NULL,
+  `testId` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `testId_idx` (`testId` ASC),
+  INDEX `userId_idx` (`userId` ASC),
+  CONSTRAINT `ut_testId`
+    FOREIGN KEY (`testId`)
+    REFERENCES `testdb`.`tests` (`testId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `ut_userId`
+    FOREIGN KEY (`userId`)
+    REFERENCES `testdb`.`users` (`uId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
 INSERT INTO `testdb`.`users`
 (`uId`,
 `uName`,
@@ -60,3 +80,5 @@ VALUES
  1);
 
 INSERT INTO `testdb`.`users` (`uName`, `uPass`, `isAdmin`) VALUES ('user', 'password', 0);
+
+
