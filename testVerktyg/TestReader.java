@@ -22,13 +22,13 @@ public class TestReader {
 	}
 
 	public List <Test> getTestsByUserId(int userId){
-		query = eManager.createNamedQuery("TestEntity.findByUserId", Test.class);
+		query = eManager.createNamedQuery("Test.findByUserId", Test.class);
 		query.setParameter("uId", userId);
 		return query.getResultList();
 	}
 
 	public List <Test> getAllTests(){
-		query = eManager.createNamedQuery("TestEntity.findAll", Test.class);
+		query = eManager.createNamedQuery("Test.findAll", Test.class);
 		return query.getResultList();
 	}
 }

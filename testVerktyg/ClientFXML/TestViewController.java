@@ -60,6 +60,12 @@ public class TestViewController implements Initializable {
 		//		placeChoices();
 	}
 
+	private void showQuestions(){
+		System.out.println("Showing questions");
+		Question question;
+		lblQuestion.setText(question.getQuestion());
+	}
+
 	private void placeChoices(){
 		btnList.forEach((rBtn) -> {
 			centerVbox.getChildren().add(rBtn);
