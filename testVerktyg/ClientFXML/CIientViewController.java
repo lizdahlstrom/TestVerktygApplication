@@ -1,6 +1,7 @@
 package testVerktyg.ClientFXML;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.persistence.EntityManager;
@@ -18,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import testVerktyg.Test;
 import testVerktyg.TestReader;
+import testVerktyg.TestToolApp;
 
 public class CIientViewController implements Initializable {
 
@@ -32,21 +34,19 @@ public class CIientViewController implements Initializable {
 	@FXML private TestViewController testController; // hold testcontroller
 
 	private ObservableList <Test> tests;
+	private ArrayList <Test> arrTests = new ArrayList<>() ;
 	private EntityManager em;
 	private EntityManagerFactory emfactory;
 	private TestReader tReader;
+	private int uId = TestToolApp.userId;
 
-	private int uId;
 
-	public CIientViewController(int uId){
-		this.uId = uId;
+	public CIientViewController(){
 		emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
 		em = emfactory.createEntityManager();
 		System.out.println(uId);
 
 		testController = new TestViewController();
-
-
 
 		tReader = new TestReader(em); // SOme test code
 		//		Test testVar = tReader.getTestById(1);
@@ -77,7 +77,6 @@ public class CIientViewController implements Initializable {
 			Platform.exit();
 		});
 		btnNext.setOnAction(e->{
-			testController.gotoNextQuestion();
 		});
 		btnPrev.setOnAction(e->{
 			//			testController.gotoPrevQuestion();
@@ -86,7 +85,9 @@ public class CIientViewController implements Initializable {
 	}
 
 	private void loadUserTests(){
-		tests = FXCollections.observableArrayList(tReader.getTestsByUserId(uId));
+		arrTests.add(tReader.getTestById(uId));
+		tests = FXCollections.observableArrayList(arrTests);
+
 	}
 
 	private void displayTestList(){

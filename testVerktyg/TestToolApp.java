@@ -73,7 +73,7 @@ public class TestToolApp extends Application {
 				primaryStage.setScene(scene);
 
 			} else if (!isAdmin && inlogModel.isPupil(inlogView.getName(), inlogView.getPass(), emfactory, em)) {
-				clientContr = new CIientViewController(userId);
+				clientContr = new CIientViewController();
 				primaryStage.setTitle(title + ": Client View");
 				loadView(clientViewPath);
 				primaryStage.setScene(scene);

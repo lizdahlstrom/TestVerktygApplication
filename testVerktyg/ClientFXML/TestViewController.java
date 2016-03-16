@@ -42,23 +42,23 @@ public class TestViewController implements Initializable {
 				System.out.println("toggle something");
 		});
 	}
+	//
+	//	private void showQuestion(Question question){
+	//		System.out.println("Test test");
+	//		lblQuestion.setText(question.getQuestion());
+	//		System.out.println("Test test 2 ");
+	//		question.getChoices().forEach((choice)-> {
+	//			RadioButton rButton = new RadioButton(choice.getChoice());// sets label with radiobutton
+	//			String choiceId = Integer.toString(choice.getChoiceId());
+	//			rButton.setId(choiceId);
+	//			rButton.setToggleGroup(tGroup);
+	//			btnList.add(rButton);
+	//			centerVbox.getChildren().add(rButton);
+	//			System.out.println("Added Radiobutton");			
+	//		});
 
-	private void showQuestion(Question question){
-		System.out.println("Test test");
-		lblQuestion.setText(question.getQuestion());
-		System.out.println("Test test 2 ");
-		question.getChoices().forEach((choice)-> {
-			RadioButton rButton = new RadioButton(choice.getChoice());// sets label with radiobutton
-			String choiceId = Integer.toString(choice.getChoiceId());
-			rButton.setId(choiceId);
-			rButton.setToggleGroup(tGroup);
-			btnList.add(rButton);
-			centerVbox.getChildren().add(rButton);
-			System.out.println("Added Radiobutton");			
-		});
-
-		//		placeChoices();
-	}
+	//		placeChoices();
+	//}
 
 	private void showQuestions(){
 		System.out.println("Showing questions");
@@ -83,19 +83,19 @@ public class TestViewController implements Initializable {
 		this.test = test;
 	}
 
-	public void gotoNextQuestion(){
-		Question question = test.getQuestions().get(count);
-		count += 1; 
-		showQuestion(question);
-	}
+	//public void gotoNextQuestion(){
+	//	Question question = test.getQuestions().get(count);
+	//	count += 1; 
+	//	showQuestion(question);
+	//}
 
 	public void gotoPrevQuestion(){
 
 	}
 
-	public Question getCurrentQ(){
-		return test.getQuestions().get(count);
-	}
+	//public Question getCurrentQ(){
+	//	return test.getQuestions().get(count);
+	//}
 
 	public VBox getVbox(){
 		return view;
