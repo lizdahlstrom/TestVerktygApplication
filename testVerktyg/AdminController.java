@@ -17,7 +17,7 @@ import javafx.scene.layout.Pane;
 
 public class AdminController {
 	private AdminModel model = new AdminModel();
-	private int uId;
+	private int uId = TestToolApp.userId;
 	private Question question = new Question();
 	private Choice choice;
 	private ArrayList<Choice> choices = new ArrayList<>();
@@ -67,21 +67,20 @@ public class AdminController {
 	public AdminController() {
 
 	}
-
-	public AdminController(int uId) {
-		this.uId = uId;
-
-	}
+	/*
+	 * public AdminController(int uId) { this.uId = uId;
+	 * 
+	 * }
+	 */
 
 	// Getters and setters
 
 	public AdminModel getModel() {
 		return model;
 	}
-
-	public void setuId(int uId) {
-		this.uId = uId;
-	}
+	/*
+	 * public void setuId(int uId) { this.uId = uId; }
+	 */
 
 	public void cleanTestmaker() {
 		txtQueryField.clear();

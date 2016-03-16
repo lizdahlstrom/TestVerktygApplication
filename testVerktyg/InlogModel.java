@@ -40,7 +40,6 @@ public class InlogModel {
 		return bool;
 	}
 
-
 	// Method isPupil there the method get the parameters mentioned below.
 	public boolean isPupil(String name, String pw, EntityManagerFactory emfactory, EntityManager em) {
 		query = em.createNamedQuery("User.findUserByNameAndPw", User.class);
@@ -79,7 +78,7 @@ public class InlogModel {
 		return errorMsg;
 	}
 
-	public void setUId(int uId){
+	public void setUId(int uId) {
 		this.uId = uId;
 	}
 

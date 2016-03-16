@@ -29,8 +29,8 @@ public class TestToolApp extends Application {
 	private Stage primaryStage;
 	private EntityManagerFactory emfactory;
 	private EntityManager em;
-	private int userId;
-	//	Scene adminScene;
+	public static int userId;
+	// Scene adminScene;
 	private Scene scene;
 
 	private final String adminViewPath = "adminViews/AdminView.fxml";
@@ -67,7 +67,7 @@ public class TestToolApp extends Application {
 			userId = inlogModel.getUId();
 
 			if (isAdmin) {
-				adminContr = new AdminController(userId);
+				// adminContr = new AdminController(userId);
 				primaryStage.setTitle(title + ": Admin View");
 				loadView(adminViewPath);
 				primaryStage.setScene(scene);
@@ -86,7 +86,7 @@ public class TestToolApp extends Application {
 		primaryStage.show();
 	}
 
-	public void loadView(String path){
+	public void loadView(String path) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(TestToolApp.class.getResource(path));

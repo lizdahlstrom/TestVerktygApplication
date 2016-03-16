@@ -5,16 +5,18 @@ import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class AdminModel {
 	private ArrayList<Question> tests = new ArrayList<>();
 	private ArrayList<ArrayList<Choice>> qChoices = new ArrayList<>();
 	private EntityManagerFactory emfactory;
 	private EntityManager em;
-	User users = new User();
+	User user = new User();
 	Test test = new Test();
 	Question questions = new Question();
 	Choice options = new Choice();
+	private Query query;
 
 	public AdminModel() {
 	}
@@ -24,34 +26,46 @@ public class AdminModel {
 		qChoices.add(choices);
 	}
 
-	public void saveTest(int uid) {
+	public void saveTest(int uId) {
 		emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
 		em = emfactory.createEntityManager();
 
+		System.out.println("uid = " + uId);
 		// System.out.println("EntityManager : " + em);
 
 		em.getTransaction().begin();
+		query = em.createNamedQuery("User.findUserById", User.class);
+		query.setParameter("uId", uId);
+
+		try {
+			user = (User) query.getSingleResult();
+		} catch (Exception e) {
+			System.out.println("Error, Can not find User Id : " + uId);
+			e.printStackTrace();
+
+		}
 
 		// users.setUId(uId);
+		// users.setIsAdmin(true);
 		// em.persist(users);
 
+		// test.setTestId(0);
+		test.setUser(user);
 		// test.setQuestions(tests);
 
 		em.persist(test);
 
 		tests.forEach((form) -> {
-
+			questions.setTest(test);
 			questions.setQuestion(form.getQuestion());
 
 			em.persist(questions);
 
 			qChoices.forEach((option) -> {
 				option.forEach((answer) -> {
+					options.setQuestion(questions);
 					options.setChoice(answer.getChoice());
-				});
-
-				form.getChoices().forEach((corr) -> {
-					if (options.getChoice() == corr.getChoice() && corr.getIsTrue() == 1) {
+					if (options.getChoice() == answer.getChoice() && answer.getIsTrue() == 1) {
 						options.setIsTrue((byte) 1);
 
 					} else {
@@ -60,22 +74,7 @@ public class AdminModel {
 					}
 
 				});
-				em.persist(options);
-			});
 
-			form.getChoices().forEach((option) -> {
-				options.setChoice(option.getChoice());
-
-				form.getChoices().forEach((corr) -> {
-					if (options.getChoice() == corr.getChoice() && corr.getIsTrue() == 1) {
-						options.setIsTrue((byte) 1);
-
-					} else {
-						options.setIsTrue((byte) 0);
-						;
-					}
-
-				});
 				em.persist(options);
 			});
 
