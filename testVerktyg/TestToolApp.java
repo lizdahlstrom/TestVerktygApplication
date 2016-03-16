@@ -8,10 +8,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import testVerktyg.ClientFXML.CIientViewController;
 
 /**
  *
@@ -23,18 +20,19 @@ public class TestToolApp extends Application {
 	// Instance variables
 	private InlogView inlogView;
 	private InlogModel inlogModel;
-	private CIientViewController clientContr;
-	private AdminController adminContr;
 	private String title = "Testverktyg";
 	private Stage primaryStage;
 	private EntityManagerFactory emfactory;
 	private EntityManager em;
 	public static int userId;
-	// Scene adminScene;
 	private Scene scene;
 
 	private final String adminViewPath = "adminViews/AdminView.fxml";
 	private final String clientViewPath = "ClientFXML/ClientView.fxml";
+	private final String StartPagePath = "StartPage.fxml";
+
+	// @FXML // fx:id ="startPage"
+	// private AnchorPane startPage;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -48,13 +46,13 @@ public class TestToolApp extends Application {
 		em = emfactory.createEntityManager();
 
 		// Temporary VBox with button ... needed to launch login window
-		Button button = new Button("Login");
-		VBox vboxs = new VBox();
-		vboxs.getChildren().add(button);
-		button.setOnAction(e -> {
-			loginStart();
-		});
-		primaryStage.setScene(new Scene(vboxs));
+		primaryStage.setTitle(title + "StartPage");
+		loadView(StartPagePath);
+		// Button button = new Button("Login");
+		// VBox vboxs = new VBox();
+		// vboxs.getChildren().add(button);
+
+		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 
@@ -67,13 +65,11 @@ public class TestToolApp extends Application {
 			userId = inlogModel.getUId();
 
 			if (isAdmin) {
-				// adminContr = new AdminController(userId);
 				primaryStage.setTitle(title + ": Admin View");
 				loadView(adminViewPath);
 				primaryStage.setScene(scene);
 
 			} else if (!isAdmin && inlogModel.isPupil(inlogView.getName(), inlogView.getPass(), emfactory, em)) {
-				clientContr = new CIientViewController();
 				primaryStage.setTitle(title + ": Client View");
 				loadView(clientViewPath);
 				primaryStage.setScene(scene);
