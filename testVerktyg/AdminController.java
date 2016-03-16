@@ -1,6 +1,7 @@
 package testVerktyg;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -20,16 +21,19 @@ import javafx.scene.layout.Pane;
 public class AdminController {
 	// Instance variables
 	private AdminView view;
-	private AdminModel model;
+	private AdminModel model = new AdminModel();
 	// private QuestionCreator q;
 	// private Stage stage;
 	private int uId;
 	// private TestToolApp mainApp;
 	private EntityManager em;
 	private Question question = new Question();
-	private Choice choice = new Choice();
+	private Choice choice;
+	private List<Choice> choices = new ArrayList<>();
 	// private URL adminView =
 	// TestToolApp.class.getResource("adminViews/AdminView.fxml");
+
+	private ArrayList<String> options = new ArrayList<>();
 
 	private double y = 60;
 	private TextField ans;
@@ -140,25 +144,54 @@ public class AdminController {
 			ansList.forEach((tf) -> {
 				System.out.println("testing : " + tf.getText());
 				if (!tf.getText().isEmpty() && !tf.getText().equals(null)) {
+					options.add(tf.getText());
+					/*
+					 * choice.setChoice(tf.getText()); if
+					 * (choice.getChoice().equalsIgnoreCase(cmbCorrAns.getValue(
+					 * ))) { choice.setIsTrue((byte) 1); } else {
+					 * choice.setIsTrue((byte) 0); }
+					 */
 
-					choice.setChoice(tf.getText());
-					if (choice.getChoice().equalsIgnoreCase(cmbCorrAns.getValue())) {
-						choice.setIsTrue((byte) 1);
-					} else {
-						choice.setIsTrue((byte) 0);
-					}
 					System.out.println("question : " + question.getQuestion());
-					System.out.println("choice : " + choice.getChoice());
+					// System.out.println("choice : " + choice.getChoice());
 					// System.out.println(question.getQuestions());
-					question.addChoice(choice);
+
 				}
 			});
+			System.out.println("option is  : " + options.get(0) + " || " + options.get(1) + "||" + options.get(2));
+			options.forEach((item) -> {
+				System.out.println("options : " + item);
+				choice = new Choice();
+				if (item.equalsIgnoreCase(cmbCorrAns.getValue())) {
+					choice.setIsTrue((byte) 1);
+				} else {
+					choice.setIsTrue((byte) 0);
+				}
+				choice.setChoice(item);
 
+				// System.out.println("choice : " + choice.getChoice());
+				// question.addChoice(choice);
+				choices.add(choice);
+
+			});
+			System.out.println("Choices are : " + choices.get(0).getChoice() + " " + choices.get(0).getIsTrue() + " || "
+					+ choices.get(1).getChoice() + " " + choices.get(1).getIsTrue() + " || "
+					+ choices.get(2).getChoice() + " " + choices.get(2).getIsTrue());
+			/*
+			 * question.getChoices().forEach((action) -> { System.out.println(
+			 * "choices : " + action.getChoice() + " size : " + choices.size());
+			 * });
+			 */
+			question.setChoices(choices);
+			System.out.println("lets see : " + question.getChoices().get(0).getChoice() + " || "
+					+ question.getChoices().get(1).getChoice() + "||" + question.getChoices().get(2).getChoice());
 			model.makeTest(question);
+			System.out.println("em : " + em);
 			// cleanTestmaker();
 		});
 
 		btnSaveTest.setOnAction((push) -> {
+
 			model.saveTest(em, uId);
 		});
 
@@ -183,6 +216,7 @@ public class AdminController {
 
 		ansList.addListener(new ListChangeListener<TextField>() {
 
+			@SuppressWarnings("rawtypes")
 			@Override
 			public void onChanged(ListChangeListener.Change change) {
 				while (change.next()) {

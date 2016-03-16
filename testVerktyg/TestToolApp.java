@@ -78,7 +78,7 @@ public class TestToolApp extends Application {
 			userId = inlogModel.getUId();
 
 			if (isAdmin) {
-				adminContr = new AdminController(em, userId); //
+				adminContr = new AdminController(); //
 				// primaryStage,
 				// em,
 				// userId);

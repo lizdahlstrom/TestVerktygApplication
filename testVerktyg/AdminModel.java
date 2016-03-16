@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.persistence.EntityManager;
 
 public class AdminModel {
-	private ArrayList<Question> tests;
+	private ArrayList<Question> tests = new ArrayList<>();
 
 	public AdminModel() {
 	}
@@ -16,6 +16,7 @@ public class AdminModel {
 
 	public void saveTest(EntityManager entitymanager, int uId) {
 
+		System.out.println("EntityManager : " + entitymanager);
 		entitymanager.getTransaction().begin();
 		User users = new User();
 		Test test = new Test();
