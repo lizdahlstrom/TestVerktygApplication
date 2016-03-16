@@ -44,8 +44,6 @@ public class TestToolApp extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
 
-		// FXMLLoader.load(TestToolApp.class.getResource("adminViews/AdminView.fxml"));
-
 		emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
 		em = emfactory.createEntityManager();
 
@@ -75,7 +73,7 @@ public class TestToolApp extends Application {
 				primaryStage.setScene(scene);
 
 			} else if (!isAdmin && inlogModel.isPupil(inlogView.getName(), inlogView.getPass(), emfactory, em)) {
-				clientContr = new CIientViewController();
+				clientContr = new CIientViewController(userId);
 				primaryStage.setTitle(title + ": Client View");
 				loadView(clientViewPath);
 				primaryStage.setScene(scene);

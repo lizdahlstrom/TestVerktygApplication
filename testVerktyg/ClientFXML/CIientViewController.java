@@ -1,6 +1,7 @@
 package testVerktyg.ClientFXML;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.persistence.EntityManager;
@@ -27,31 +28,30 @@ public class CIientViewController implements Initializable {
 	@FXML private Button btnPrev;
 	@FXML private TestViewController testController; // hold testcontroller
 
-	private Test test;
+	private ArrayList <Test> tests;
 	private EntityManager em;
 	private EntityManagerFactory emfactory;
 
-	public CIientViewController(){
+	private int uId;
+
+	public CIientViewController(int uId){
+		this.uId = uId;
 		emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
 		em = emfactory.createEntityManager();
+
+
 		testController = new TestViewController();
 
 		TestReader tReader = new TestReader(em); // SOme test code
 		Test testVar = tReader.getTestById(1);
-		testController.setTest(testVar);
-		testController.gotoNextQuestion();
+
 	}
 
-	public CIientViewController(EntityManager em, Test test){
-		this.test = test;
-		this.em = em;
-		testController = new TestViewController();
-		testController.setTest(test);
-	}
 
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+
 
 
 		//Actionevents
@@ -75,6 +75,10 @@ public class CIientViewController implements Initializable {
 		btnPrev.setOnAction(e->{
 			//			testController.gotoPrevQuestion();
 		});
+
+	}
+
+	private void loadTests(){
 
 	}
 
