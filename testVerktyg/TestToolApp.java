@@ -18,17 +18,17 @@ import javafx.stage.Stage;
 
 public class TestToolApp extends Application {
 	// Instance variables
-	private InlogView inlogView;
-	private InlogModel inlogModel;
-	private String title = "Testverktyg";
-	private Stage primaryStage;
-	private EntityManagerFactory emfactory;
-	private EntityManager em;
+	private static InlogView inlogView;
+	private static InlogModel inlogModel;
+	private static String title = "Testverktyg";
+	private static Stage primaryStage;
+	private static EntityManagerFactory emfactory;
+	private static EntityManager em;
 	public static int userId;
-	private Scene scene;
+	private static Scene scene;
 
-	private final String adminViewPath = "adminViews/AdminView.fxml";
-	private final String clientViewPath = "ClientFXML/ClientView.fxml";
+	private final static String adminViewPath = "adminViews/AdminView.fxml";
+	private final static String clientViewPath = "ClientFXML/ClientView.fxml";
 	private final String StartPagePath = "StartPage.fxml";
 
 	// @FXML // fx:id ="startPage"
@@ -40,7 +40,7 @@ public class TestToolApp extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		this.primaryStage = primaryStage;
+		TestToolApp.primaryStage = primaryStage;
 
 		emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
 		em = emfactory.createEntityManager();
@@ -56,7 +56,7 @@ public class TestToolApp extends Application {
 		primaryStage.show();
 	}
 
-	public void loginStart() {
+	public static void loginStart() {
 		inlogModel = new InlogModel();
 		inlogView = new InlogView();
 		if (inlogModel.isInputValid(inlogView.getName()) && inlogModel.isInputValid(inlogView.getPass())) {
@@ -82,7 +82,7 @@ public class TestToolApp extends Application {
 		primaryStage.show();
 	}
 
-	public void loadView(String path) {
+	public static void loadView(String path) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(TestToolApp.class.getResource(path));
