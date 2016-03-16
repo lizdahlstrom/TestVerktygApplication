@@ -1,4 +1,4 @@
-package ClientFXML;
+package testVerktyg.ClientFXML;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,11 +36,10 @@ public class CIientViewController implements Initializable {
 		em = emfactory.createEntityManager();
 		testController = new TestViewController();
 
-		TestReader tReader = new TestReader(em);
+		TestReader tReader = new TestReader(em); // SOme test code
 		Test testVar = tReader.getTestById(1);
 		testController.setTest(testVar);
 		testController.gotoNextQuestion();
-
 	}
 
 	public CIientViewController(EntityManager em, Test test){

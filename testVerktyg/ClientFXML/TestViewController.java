@@ -1,4 +1,4 @@
-package ClientFXML;
+package testVerktyg.ClientFXML;
 
 import java.net.URL;
 import java.util.ArrayList;

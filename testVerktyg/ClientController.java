@@ -12,6 +12,7 @@ public class ClientController {
 	private TestReader testReader;
 	private int userId;
 
+
 	public ClientController(Stage stage, EntityManager eManager, int userId) {
 		this.stage = stage;
 		this.userId = userId;

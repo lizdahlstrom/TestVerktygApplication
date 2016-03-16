@@ -1,4 +1,4 @@
-package ClientFXML;
+package testVerktyg.ClientFXML;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
