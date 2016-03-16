@@ -16,7 +16,7 @@ public class TestClassMain extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Pane mainWindow = (Pane) FXMLLoader.load(TestClassMain.class.getResource("adminViews/Något.fxml"));
+		Pane mainWindow = (Pane) FXMLLoader.load(TestClassMain.class.getResource("testVerktyg/inlogdialog.fxml"));
 
 		Scene scene = new Scene(mainWindow);
 		primaryStage.setScene(scene);
