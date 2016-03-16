@@ -3,9 +3,13 @@ package testVerktyg;
 import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class AdminModel {
 	private ArrayList<Question> tests = new ArrayList<>();
+	private EntityManagerFactory emfactory;
+	private EntityManager em;
 
 	public AdminModel() {
 	}
@@ -14,27 +18,30 @@ public class AdminModel {
 		tests.add(question);
 	}
 
-	public void saveTest(EntityManager entitymanager, int uId) {
+	public void saveTest(int uid) {
+		emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+		em = emfactory.createEntityManager();
 
-		System.out.println("EntityManager : " + entitymanager);
-		entitymanager.getTransaction().begin();
+		System.out.println("EntityManager : " + em);
+
+		em.getTransaction().begin();
 		User users = new User();
 		Test test = new Test();
 		Question questions = new Question();
 		Choice options = new Choice();
 
-		users.setUId(uId);
-		entitymanager.persist(users);
+		// users.setUId(uId);
+		// em.persist(users);
 
 		test.setQuestions(tests);
 
-		entitymanager.persist(test);
+		em.persist(test);
 
 		tests.forEach((form) -> {
 
 			questions.setQuestion(form.getQuestion());
 
-			entitymanager.persist(questions);
+			em.persist(questions);
 
 			form.getChoices().forEach((option) -> {
 				options.setChoice(option.getChoice());
@@ -49,12 +56,12 @@ public class AdminModel {
 					}
 
 				});
-				entitymanager.persist(options);
+				em.persist(options);
 			});
 
 		});
 
-		entitymanager.getTransaction().commit();
+		em.getTransaction().commit();
 	}
 
 	public ArrayList<Question> getTests() {

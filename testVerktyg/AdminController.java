@@ -3,8 +3,6 @@ package testVerktyg;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -19,19 +17,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 public class AdminController {
-	// Instance variables
-	private AdminView view;
 	private AdminModel model = new AdminModel();
-	// private QuestionCreator q;
-	// private Stage stage;
 	private int uId;
-	// private TestToolApp mainApp;
-	private EntityManager em;
 	private Question question = new Question();
 	private Choice choice;
 	private List<Choice> choices = new ArrayList<>();
-	// private URL adminView =
-	// TestToolApp.class.getResource("adminViews/AdminView.fxml");
 
 	private ArrayList<String> options = new ArrayList<>();
 
@@ -39,7 +29,6 @@ public class AdminController {
 	private TextField ans;
 	private ArrayList<TextField> ansList1 = new ArrayList<>();
 	private ObservableList<TextField> ansList; // = new ObservableList<>();
-	// private ArrayList<String> ansSList;
 
 	@FXML // fx:id ="adminWindow"
 	private Pane adminWindow;
@@ -75,47 +64,20 @@ public class AdminController {
 	private TextField txtFirstField;
 
 	// Constructor
-	public AdminController() {// EntityManager em, int uId) { // Stage stage,
-								// EntityManager em, int
-								// userId) {
-		// this.uId = uId;
-		// this.em = em;
 
-		/*
-		 * this.stage = stage; this.userId = userId; view = new AdminView(); q =
-		 * new QuestionCreator(); model = new AdminModel();
-		 * 
-		 * // Create question button view.getBtnCreateQuest().setOnAction(e -> {
-		 * q = new QuestionCreator(); view.getCenter().getChildren().clear(); //
-		 * clears anchorpane
-		 * view.getCenter().getChildren().add(q.getQuestionList()); // adds //
-		 * vbox }); // Save btn view.getBtnSaveTest().setOnAction(e -> {
-		 * model.saveTest(em, userId);
-		 * 
-		 * });
-		 * 
-		 * q.getBtnFinish().setOnAction(e -> { q.saveAndReset();
-		 * view.getCenter().getChildren().clear(); view.setDefaultView(); });
-		 */
+	public AdminController() {
+
 	}
 
-	public AdminController(EntityManager em, int uId) {
-		this.em = em;
+	public AdminController(int uId) {
 		this.uId = uId;
 
 	}
 
 	// Getters and setters
-	public AdminView getView() {
-		return view;
-	}
 
 	public AdminModel getModel() {
 		return model;
-	}
-
-	public void setEm(EntityManager em) {
-		this.em = em;
 	}
 
 	public void setuId(int uId) {
@@ -136,7 +98,8 @@ public class AdminController {
 		newTest.setOnAction((value) -> {
 			System.out.println("TEst");
 			questionWindow.setVisible(true);
-			System.out.println(adminWindow.getChildren());
+			System.out.println("uid : " + uId);
+
 		});
 
 		btnSaveQuestion.setOnAction((value) -> {
@@ -145,22 +108,10 @@ public class AdminController {
 				System.out.println("testing : " + tf.getText());
 				if (!tf.getText().isEmpty() && !tf.getText().equals(null)) {
 					options.add(tf.getText());
-					/*
-					 * choice.setChoice(tf.getText()); if
-					 * (choice.getChoice().equalsIgnoreCase(cmbCorrAns.getValue(
-					 * ))) { choice.setIsTrue((byte) 1); } else {
-					 * choice.setIsTrue((byte) 0); }
-					 */
-
-					System.out.println("question : " + question.getQuestion());
-					// System.out.println("choice : " + choice.getChoice());
-					// System.out.println(question.getQuestions());
 
 				}
 			});
-			System.out.println("option is  : " + options.get(0) + " || " + options.get(1) + "||" + options.get(2));
 			options.forEach((item) -> {
-				System.out.println("options : " + item);
 				choice = new Choice();
 				if (item.equalsIgnoreCase(cmbCorrAns.getValue())) {
 					choice.setIsTrue((byte) 1);
@@ -169,30 +120,17 @@ public class AdminController {
 				}
 				choice.setChoice(item);
 
-				// System.out.println("choice : " + choice.getChoice());
-				// question.addChoice(choice);
 				choices.add(choice);
 
 			});
-			System.out.println("Choices are : " + choices.get(0).getChoice() + " " + choices.get(0).getIsTrue() + " || "
-					+ choices.get(1).getChoice() + " " + choices.get(1).getIsTrue() + " || "
-					+ choices.get(2).getChoice() + " " + choices.get(2).getIsTrue());
-			/*
-			 * question.getChoices().forEach((action) -> { System.out.println(
-			 * "choices : " + action.getChoice() + " size : " + choices.size());
-			 * });
-			 */
 			question.setChoices(choices);
-			System.out.println("lets see : " + question.getChoices().get(0).getChoice() + " || "
-					+ question.getChoices().get(1).getChoice() + "||" + question.getChoices().get(2).getChoice());
 			model.makeTest(question);
-			System.out.println("em : " + em);
 			// cleanTestmaker();
 		});
 
 		btnSaveTest.setOnAction((push) -> {
 
-			model.saveTest(em, uId);
+			model.saveTest(uId);
 		});
 
 		btnAddAns.setOnAction((value) -> {
@@ -236,7 +174,4 @@ public class AdminController {
 		});
 
 	}
-	/*
-	 * public void setMain(TestToolApp mainApp) { this.mainApp = mainApp; }
-	 */
 }
