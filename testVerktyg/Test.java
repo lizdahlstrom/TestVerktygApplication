@@ -36,6 +36,8 @@ public class Test implements Serializable {
 	@JoinColumn(name = "uId")
 	private User user;
 
+	private String testTitle;
+
 	public Test() {
 	}
 
@@ -69,6 +71,21 @@ public class Test implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getTestTitle() {
+		return testTitle;
+	}
+
+	public void setTestTitle(String testTitle) {
+		this.testTitle = testTitle;
+	}
+
+	@Override
+	public String toString() { //
+		String str = "";
+		str += "Test ID: " + Integer.toString(testId);
+		return str;
 	}
 
 }

@@ -28,7 +28,7 @@ public class TestToolApp extends Application {
 	private static Scene scene;
 
 	private final static String adminViewPath = "adminViews/AdminView.fxml";
-	private final static String clientViewPath = "ClientFXML/ClientView.fxml";
+	private final static String clientViewPath = "clientFXML/ClientView.fxml";
 	private final String StartPagePath = "StartPage.fxml";
 
 	// @FXML // fx:id ="startPage"

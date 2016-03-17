@@ -1,30 +1,39 @@
 package testVerktyg;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the choices database table.
- * 
+ *
  */
 @Entity
-@Table(name="choices")
-@NamedQuery(name="Choice.findAll", query="SELECT c FROM Choice c")
+@Table(name = "choices")
+@NamedQueries({ @NamedQuery(name = "Choice.findAll", query = "SELECT c FROM Choice c"),
+		@NamedQuery(name = "Choice.findByQuestionId", query = "SELECT c FROM Choice c WHERE c.question.questId =:questionId") })
 public class Choice implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int choiceId;
 
 	private String choice;
 
 	private byte isTrue;
 
-	//bi-directional many-to-one association to Question
+	// bi-directional many-to-one association to Question
 	@ManyToOne
-	@JoinColumn(name="questionId")
+	@JoinColumn(name = "questionId")
 	private Question question;
 
 	public Choice() {

@@ -8,16 +8,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
  * The persistent class for the questions database table.
- * 
+ *
  */
 @Entity
 @Table(name = "questions")
-@NamedQuery(name = "Question.findAll", query = "SELECT q FROM Question q")
+@NamedQueries({ @NamedQuery(name = "Question.findAll", query = "SELECT q FROM Question q"),
+		@NamedQuery(name = "Question.findByTestId", query = "SELECT q FROM Question q WHERE q.test.testId =:testId") })
 public class Question implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -59,24 +61,24 @@ public class Question implements Serializable {
 
 	/*
 	 * public String getQuestions() { return this.questions; }
-	 * 
+	 *
 	 * public void setQuestions(String questions) { this.questions = questions;
 	 * }
 	 *//*
 		 * public List<Choice> getChoices() { return this.choices; }
-		 * 
+		 *
 		 * public void setChoices(List<Choice> choices) { this.choices =
 		 * choices; }
 		 */
 	/*
 	 * public Choice addChoice(Choice choice) { getChoices().add(choice);
 	 * choice.setQuestion(this);
-	 * 
+	 *
 	 * return choice; }
-	 * 
+	 *
 	 * public Choice removeChoice(Choice choice) { getChoices().remove(choice);
 	 * choice.setQuestion(null);
-	 * 
+	 *
 	 * return choice; }
 	 */
 

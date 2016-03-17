@@ -1,106 +1,122 @@
-package testVerktyg.ClientFXML;
+package testVerktyg.clientFXML;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import testVerktyg.ClientModel;
 import testVerktyg.Test;
-import testVerktyg.TestReader;
-import testVerktyg.TestToolApp;
 
 public class CIientViewController implements Initializable {
 
-	@FXML private VBox clientWindow;
-	@FXML private MenuItem menuShow;
-	@FXML private MenuItem menuClose;
-	@FXML private MenuItem menuSave;
-	@FXML private MenuItem menuQuit;
-	@FXML private AnchorPane centerContent;
-	@FXML private Button btnNext;
-	@FXML private Button btnPrev;
-	@FXML private TestViewController testController; // hold testcontroller
+	@FXML
+	private VBox clientWindow;
+	@FXML
+	private MenuItem menuShow;
+	@FXML
+	private MenuItem menuClose;
+	@FXML
+	private MenuItem menuSave;
+	@FXML
+	private MenuItem menuQuit;
+	@FXML
+	private AnchorPane centerContent;
+	@FXML
+	private Button btnNext;
+	@FXML
+	private Button btnPrev;
+	@FXML
+	private Button btnStart;
+	@FXML
+	private ListView<String> listView;
+	@FXML
+	private Label lblTitle;
+	@FXML
+	private Label lblTimer;
+	@FXML
+	private TestViewController testController; // hold testcontroller
+	@FXML
+	private VBox TestView;
 
-	private ObservableList <Test> tests;
-	private ArrayList <Test> arrTests = new ArrayList<>() ;
-	private EntityManager em;
-	private EntityManagerFactory emfactory;
-	private TestReader tReader;
-	private int uId = TestToolApp.userId;
+	private ClientModel clientModel = new ClientModel();;
 
-
-	public CIientViewController(){
-		emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
-		em = emfactory.createEntityManager();
-		System.out.println(uId);
-
+	public CIientViewController() {
 		testController = new TestViewController();
-
-		tReader = new TestReader(em); // SOme test code
-		//		Test testVar = tReader.getTestById(1);
-		loadUserTests();
-		displayTestList();
 	}
-
-
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
+		TestView.setVisible(false);
 
+		// Actionevents
+		menuShow.setOnAction(e -> {
+			listView = new ListView<>();
 
-		//Actionevents
-		menuShow.setOnAction(e->{
-			//			testController = new TestViewController();
-			//			centerContent.getChildren().add(testController.getVbox());
+			// List<Test> testList = clientModel.getTests();
+			// testList.forEach((test) -> {
+			// listView.getItems().add(test.getTestTitle());
+			// });
+			listView.getItems().add("Hello");
+			listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+			listView.setVisible(true);
+			btnStart.setVisible(true);
+			System.out.println("Updated list of tests...");
+
 		});
-		menuClose.setOnAction(e->{
+		menuClose.setOnAction(e -> {
 
 		});
 
-		menuSave.setOnAction(e->{
+		menuSave.setOnAction(e -> {
 			// Take testResult from testViewController and send to DB
 		});
-		menuQuit.setOnAction(e->{
+		menuQuit.setOnAction(e -> {
 			Platform.exit();
 		});
-		btnNext.setOnAction(e->{
+		btnNext.setOnAction(e -> {
+
 		});
-		btnPrev.setOnAction(e->{
-			//			testController.gotoPrevQuestion();
+		btnPrev.setOnAction(e -> {
+
 		});
 
+		btnStart.setOnAction(e -> {
+			if (listView != null) {
+				String selectedStr = listView.getSelectionModel().getSelectedItem();
+				// if (selectedStr != null || !selectedStr.isEmpty()) {
+				clientModel.setCurrTest(selectedStr); // Sending testtitle
+														// string to set test
+				startTest();
+			} else {
+
+			}
+			btnStart.setVisible(false);
+
+		});
+		System.out.println("ClientView init complete");
 	}
 
-	private void loadUserTests(){
-		arrTests.add(tReader.getTestById(uId));
-		tests = FXCollections.observableArrayList(arrTests);
+	private void startTest() {
+		System.out.println("Starting new test...");
+		Test test = clientModel.getCurrTest();
+		lblTitle.setText(test.getTestTitle());
+
+		listView.setVisible(false);
+		btnStart.setVisible(false);
+		TestView.setVisible(true);
+		// show a question, set label of question, generate optionfields
+		clientModel.getQuestions();
 
 	}
-
-	private void displayTestList(){
-
-		//		ListView<Test> listView = new ListView<>(tests);
-		//		centerContent.getChildren().add(listView);
-	}
-
-	//	public void startTest(Test test){
-	//		//		testController = new TestViewController();
-	//		//		testController.setTest(test);
-	//		testController.gotoNextQuestion();
-	//	}
-
 
 }

@@ -1,7 +1,8 @@
-package testVerktyg.ClientFXML;
+package testVerktyg.clientFXML;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,17 +22,14 @@ public class TestClassMain2 extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		//		emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
-		//		em = emfactory.createEntityManager();
-		//		TestReader testReader = new TestReader(em);
-		//		Test test = testReader.getTestById(2);
-		//		String strtest = test.getQuestions().get(0).getQuestion();
-		//		System.out.println("test har laddat id... " + test.getTestId() + strtest);
-		//
-		//		CIientViewController cvc = new CIientViewController(em,test);
-		//		cvc.startTest(test);
+		emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
+		em = emfactory.createEntityManager();
 
-		Parent root =  FXMLLoader.load(getClass().getResource("ClientView.fxml"));
+		System.out.println("test??");
+		// CIientViewController cvc = new CIientViewController(em, test);
+		// cvc.startTest(test);
+
+		Parent root = FXMLLoader.load(getClass().getResource("clientView.fxml"));
 
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
