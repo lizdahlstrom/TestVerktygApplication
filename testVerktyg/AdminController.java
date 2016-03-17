@@ -112,9 +112,9 @@ public class AdminController {
 			options.forEach((item) -> {
 				choice = new Choice();
 				if (item.equalsIgnoreCase(cmbCorrAns.getValue())) {
-					choice.setIsTrue((byte) 1);
+					choice.setIsTrue(true);
 				} else {
-					choice.setIsTrue((byte) 0);
+					choice.setIsTrue(false);
 				}
 				choice.setChoice(item);
 

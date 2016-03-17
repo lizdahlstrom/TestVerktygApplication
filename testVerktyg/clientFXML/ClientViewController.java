@@ -1,9 +1,12 @@
 package testVerktyg.clientFXML;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -13,11 +16,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import testVerktyg.Choice;
 import testVerktyg.ClientModel;
 import testVerktyg.Test;
 
-public class CIientViewController implements Initializable {
+public class ClientViewController implements Initializable {
 
 	@FXML
 	private VBox clientWindow;
@@ -44,34 +46,37 @@ public class CIientViewController implements Initializable {
 	@FXML
 	private Label lblTimer;
 	@FXML
+	private Label lblQuestionCount;
+	@FXML
 	private TestViewController testController; // hold testcontroller
 	@FXML
 	private VBox TestView;
 
 	private ClientModel clientModel = new ClientModel();;
 
-	public CIientViewController() {
-		testController = new TestViewController();
+	public ClientViewController() {
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		testController = new TestViewController();
+		testController.testsysout();
 		TestView.setVisible(false);
+
+		ArrayList <String>arrayList = new ArrayList<>();
+		clientModel.getTests().forEach(test ->{
+			arrayList.add(Integer.toString(test.getTestId()));
+		});
+		ObservableList<String> observableList = FXCollections.observableArrayList(arrayList);
+		listView.setItems(observableList);
+		listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		listView.getSelectionModel().select(0);// selects item with index 0 by default
+		listView.setVisible(true);
+		btnStart.setVisible(true);
+		System.out.println("Updated list of tests...");
 
 		// Actionevents
 		menuShow.setOnAction(e -> {
-			listView = new ListView<>();
-
-			// List<Test> testList = clientModel.getTests();
-			// testList.forEach((test) -> {
-			// listView.getItems().add(test.getTestTitle());
-			// });
-			listView.getItems().add("Hello");
-			listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-			listView.setVisible(true);
-			btnStart.setVisible(true);
-			System.out.println("Updated list of tests...");
 
 		});
 		menuClose.setOnAction(e -> {
@@ -85,41 +90,38 @@ public class CIientViewController implements Initializable {
 			Platform.exit();
 		});
 		btnNext.setOnAction(e -> {
-			Choice choice;
 		});
 		btnPrev.setOnAction(e -> {
 
 		});
 
 		btnStart.setOnAction(e -> {
-			if (listView != null) {
-				String selectedStr = listView.getSelectionModel().getSelectedItem();
-				// if (selectedStr != null || !selectedStr.isEmpty()) {
-				clientModel.setCurrTest(selectedStr); // Sending testtitle
-				// string to set test
-				startTest();
-			} else {
 
-			}
-			btnStart.setVisible(false);
+			String selectedStr = listView.getSelectionModel().getSelectedItem();
+			System.out.println("Selected item:" + selectedStr);
+
+			clientModel.setCurrTest(selectedStr); // Sending testtitle
+			// string to set test
+			startTest();
 
 		});
 		System.out.println("ClientView init complete");
 	}
 
 	private void startTest() {
-		System.out.println("Starting new test...");
-		Test test = clientModel.getCurrTest();
-		lblTitle.setText(test.getTestTitle());
-
 		listView.setVisible(false);
 		btnStart.setVisible(false);
 		TestView.setVisible(true);
-		// show a question, set label of question, generate optionfields
-		clientModel.getQuestions();
+		System.out.println("Starting new test...");
+		clientModel.generateQuestion();
+		Test test = clientModel.getCurrTest();
+		lblTitle.setText("Test title: \" " + test.getTestTitle() + "\" "); // Test title
+		lblQuestionCount.setText("Question: " + clientModel.getQuestionCounter() + "/" + clientModel.getQuestionsize());
 
+		// show a question, set label of question, generate optionfields
+		testController.testsysout();
 		testController.setlblQuestion(clientModel.getCurrQuestion().getQuestion());
-		testController.generateView(clientModel.getChoices());
+		testController.generateView(clientModel.getCurrChoices());
 	}
 
 	private void generateOptionButtons() {

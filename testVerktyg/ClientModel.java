@@ -1,5 +1,6 @@
 package testVerktyg;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,16 +11,19 @@ public class ClientModel {
 	// Instance variables
 	private TestReader testReader;
 	private List<Test> tests;
-	private List<Question> questions;
-	private List<Choice> choices;
+	private List<Question> questions = new ArrayList<>();
+	private List<Choice> choices = new ArrayList<>();
 	private int userId;
 
 	private EntityManager em;
 	private EntityManagerFactory emfactory;
 	private int uId = TestToolApp.userId;
 
-	private Test currTest;
-	private Question currQuestion;
+	private Test currTest = new Test();
+	private Question currQuestion = new Question();
+
+	private int questionsize;
+
 
 	private int questionCounter = 0;
 	private int corrQuestionCount = 0;
@@ -29,6 +33,7 @@ public class ClientModel {
 		emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
 		em = emfactory.createEntityManager();
 		testReader = new TestReader(em);
+		System.out.println(testReader.getChoiceByQuestionId(2).toString());
 		loadTests(); // Need DB data for testing
 	}
 
@@ -45,13 +50,14 @@ public class ClientModel {
 		questions = testReader.getQuestionByTestId(currTest.getTestId());
 		currQuestion = questions.get(questionCounter);
 		choices = testReader.getChoiceByQuestionId(currQuestion.getQuestId());
+		questionCounter++;
 	}
 
 	public boolean gradeQuestion(Question q, int userChoice) { // take in question and userChoice
 		List<Choice> choiceList;
 		choiceList = testReader.getChoiceByQuestionId(q.getQuestId());
 		for (Choice choice : choiceList) {
-			if (choice.getIsTrue() == 1 && choice.getChoiceId() == userChoice) {
+			if (choice.getIsTrue() && choice.getChoiceId() == userChoice) {
 				System.out.println("Graded a question correct...");
 				corrQuestionCount++;
 				return true;
@@ -59,6 +65,17 @@ public class ClientModel {
 		}
 		return false;
 	}
+
+	public void gradeTest() {
+		Question question = new Question();
+
+		choices = testReader.getChoiceByQuestionId(currQuestion.getQuestId());
+
+		choices.forEach(choice -> {
+			choice.getIsTrue();
+		});
+	}
+
 
 	public String getQuestionCountToStr(){
 		return questionCounter + " / " + questions.size();
@@ -75,10 +92,10 @@ public class ClientModel {
 
 	public void setCurrTest(String strTest) {
 		for (Test test : tests) {
-			if (test.getTestTitle() == strTest) {
+			if (strTest.equals(Integer.toString(test.getTestId()))) {
 				currTest = test;
-				questionCounter = testReader.getQuestionByTestId(currTest.getTestId()).size(); // sets
-				// questioncount
+				System.out.println("Found test, set test: " + currTest.getTestTitle());
+				questionsize = testReader.getQuestionByTestId(currTest.getTestId()).size(); // sets
 				break;
 			}
 		}
@@ -89,7 +106,7 @@ public class ClientModel {
 		return currTest;
 	}
 
-	public List<Choice> getChoices() {
+	public List<Choice> getCurrChoices() {
 		return choices;
 	}
 
@@ -101,14 +118,21 @@ public class ClientModel {
 		return questions;
 	}
 
-	public void gradeTest() {
-		Question question = new Question();
-
-		choices = testReader.getChoiceByQuestionId(currQuestion.getQuestId());
-
-		choices.forEach(choice -> {
-			choice.getIsTrue();
-		});
+	public int getQuestionsize() {
+		return questionsize;
 	}
+
+	public void setQuestionsize(int questionsize) {
+		this.questionsize = questionsize;
+	}
+
+	public int getQuestionCounter() {
+		return questionCounter;
+	}
+
+	public int getCorrQuestionCount() {
+		return corrQuestionCount;
+	}
+
 
 }

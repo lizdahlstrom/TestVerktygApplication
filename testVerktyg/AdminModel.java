@@ -61,11 +61,11 @@ public class AdminModel {
 				option.forEach((answer) -> {
 					options.setQuestion(questions);
 					options.setChoice(answer.getChoice());
-					if (options.getChoice() == answer.getChoice() && answer.getIsTrue() == 1) {
-						options.setIsTrue((byte) 1);
+					if (options.getChoice() == answer.getChoice() && answer.getIsTrue()) {
+						options.setIsTrue(true);
 
 					} else {
-						options.setIsTrue((byte) 0);
+						options.setIsTrue(false);
 						;
 					}
 

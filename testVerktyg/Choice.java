@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "choices")
 @NamedQueries({ @NamedQuery(name = "Choice.findAll", query = "SELECT c FROM Choice c"),
-		@NamedQuery(name = "Choice.findByQuestionId", query = "SELECT c FROM Choice c WHERE c.question.questId =:questionId") })
+	@NamedQuery(name = "Choice.findByQuestionId", query = "SELECT c FROM Choice c WHERE c.question.questId =:questionId") })
 public class Choice implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -29,7 +29,7 @@ public class Choice implements Serializable {
 
 	private String choice;
 
-	private byte isTrue;
+	private boolean isTrue;
 
 	// bi-directional many-to-one association to Question
 	@ManyToOne
@@ -55,11 +55,11 @@ public class Choice implements Serializable {
 		this.choice = choice;
 	}
 
-	public byte getIsTrue() {
+	public boolean getIsTrue() {
 		return this.isTrue;
 	}
 
-	public void setIsTrue(byte isTrue) {
+	public void setIsTrue(boolean isTrue) {
 		this.isTrue = isTrue;
 	}
 
@@ -69,6 +69,12 @@ public class Choice implements Serializable {
 
 	public void setQuestion(Question question) {
 		this.question = question;
+	}
+
+	@Override
+	public String toString() {
+		return "Choice [choiceId=" + choiceId + ", choice=" + choice + ", isTrue=" + isTrue + ", question=" + question
+				+ "]";
 	}
 
 }
