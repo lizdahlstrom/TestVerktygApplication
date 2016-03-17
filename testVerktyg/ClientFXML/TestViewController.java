@@ -41,13 +41,13 @@ public class TestViewController implements Initializable {
 
 	}
 
-	private void generateView(List<Choice> options) {
+	public void generateView(List<Choice> options) {
 		for (Choice option : options) {
 			RadioButton rButton = new RadioButton(option.getChoice());// add
-																		// optionstring
-																		// to
-																		// new
-																		// radiobutton
+			// optionstring
+			// to
+			// new
+			// radiobutton
 			btnList.add(rButton);
 			rButton.setToggleGroup(tGroup);
 
@@ -55,6 +55,12 @@ public class TestViewController implements Initializable {
 		btnList.forEach(btn -> {
 			centerVbox.getChildren().add(btn); // adds btns to vbox
 		});
+	}
+
+	public void cleanQuestionView(){
+
+		centerVbox.getChildren().clear();
+		btnList.clear();
 	}
 
 	public void getSelectedItem() {

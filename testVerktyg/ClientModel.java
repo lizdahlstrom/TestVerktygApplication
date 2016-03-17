@@ -35,7 +35,7 @@ public class ClientModel {
 	private void loadTests() { // Uses testreader object to load the tests
 		try {
 			tests = testReader.getTestsByUserId(uId);
-			System.out.println("Successfully loaded tests..;");
+			System.out.println("Successfully loaded tests.. " + tests.toString());
 		} catch (Exception e) {
 			System.out.println("Exception loading tests: " + e);
 		}
@@ -43,9 +43,11 @@ public class ClientModel {
 
 	public void generateQuestion() {
 		questions = testReader.getQuestionByTestId(currTest.getTestId());
+		currQuestion = questions.get(questionCounter);
+		choices = testReader.getChoiceByQuestionId(currQuestion.getQuestId());
 	}
 
-	public boolean gradeQuestion(Question q, int userChoice) {
+	public boolean gradeQuestion(Question q, int userChoice) { // take in question and userChoice
 		List<Choice> choiceList;
 		choiceList = testReader.getChoiceByQuestionId(q.getQuestId());
 		for (Choice choice : choiceList) {
@@ -56,6 +58,10 @@ public class ClientModel {
 			}
 		}
 		return false;
+	}
+
+	public String getQuestionCountToStr(){
+		return questionCounter + " / " + questions.size();
 	}
 
 	// Getters and setters
@@ -72,16 +78,23 @@ public class ClientModel {
 			if (test.getTestTitle() == strTest) {
 				currTest = test;
 				questionCounter = testReader.getQuestionByTestId(currTest.getTestId()).size(); // sets
-																								// questioncount
+				// questioncount
 				break;
 			}
 		}
 		;
-
 	}
 
 	public Test getCurrTest() {
 		return currTest;
+	}
+
+	public List<Choice> getChoices() {
+		return choices;
+	}
+
+	public Question getCurrQuestion(){
+		return currQuestion;
 	}
 
 	public List<Question> getQuestions() {

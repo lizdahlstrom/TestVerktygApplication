@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import testVerktyg.Choice;
@@ -86,7 +85,7 @@ public class CIientViewController implements Initializable {
 			Platform.exit();
 		});
 		btnNext.setOnAction(e -> {
-			Choice choice = testController.;
+			Choice choice;
 		});
 		btnPrev.setOnAction(e -> {
 
@@ -97,7 +96,7 @@ public class CIientViewController implements Initializable {
 				String selectedStr = listView.getSelectionModel().getSelectedItem();
 				// if (selectedStr != null || !selectedStr.isEmpty()) {
 				clientModel.setCurrTest(selectedStr); // Sending testtitle
-														// string to set test
+				// string to set test
 				startTest();
 			} else {
 
@@ -119,6 +118,8 @@ public class CIientViewController implements Initializable {
 		// show a question, set label of question, generate optionfields
 		clientModel.getQuestions();
 
+		testController.setlblQuestion(clientModel.getCurrQuestion().getQuestion());
+		testController.generateView(clientModel.getChoices());
 	}
 
 	private void generateOptionButtons() {
