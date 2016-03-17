@@ -83,8 +83,22 @@ public class AdminModel {
 
 		});
 		userTest.setTest(test);
-		userTest.setUser(user);
-		em.persist(userTest);
+
+		uList.forEach((us) -> {
+			int usid;
+			usid = Integer.parseInt(us);
+			query = em.createNamedQuery("User.findUserById", User.class);
+			query.setParameter("uId", usid);
+
+			try {
+				user = (User) query.getSingleResult();
+			} catch (Exception e) {
+				System.out.println("Error Can not find User" + us);
+			}
+			userTest.setUser(user);
+			em.persist(userTest);
+		});
+
 		em.getTransaction().commit();
 	}
 
