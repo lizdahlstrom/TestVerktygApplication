@@ -53,17 +53,15 @@ public class ClientModel {
 		questionCounter++;
 	}
 
-	public boolean gradeQuestion(Question q, int userChoice) { // take in question and userChoice
+	public void gradeQuestion(Question q, int userChoice) { // take in question and userChoice
 		List<Choice> choiceList;
 		choiceList = testReader.getChoiceByQuestionId(q.getQuestId());
 		for (Choice choice : choiceList) {
 			if (choice.getIsTrue() && choice.getChoiceId() == userChoice) {
 				System.out.println("Graded a question correct...");
 				corrQuestionCount++;
-				return true;
 			}
 		}
-		return false;
 	}
 
 	public void gradeTest() {
@@ -90,16 +88,21 @@ public class ClientModel {
 		this.tests = tests;
 	}
 
-	public void setCurrTest(String strTest) {
+	public void setCurrTest(int testId) {
 		for (Test test : tests) {
-			if (strTest.equals(Integer.toString(test.getTestId()))) {
+			if (testId == test.getTestId()) {
 				currTest = test;
 				System.out.println("Found test, set test: " + currTest.getTestTitle());
 				questionsize = testReader.getQuestionByTestId(currTest.getTestId()).size(); // sets
+				System.out.println("Sert current test to:" + currTest.getTestTitle());
 				break;
 			}
 		}
 		;
+	}
+
+	public void resetQuestionVariables(){
+
 	}
 
 	public Test getCurrTest() {

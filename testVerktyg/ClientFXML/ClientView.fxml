@@ -11,6 +11,7 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -56,12 +57,27 @@
             <Insets left="20.0" right="20.0" />
          </padding>
       </HBox>
-    
-    <AnchorPane id="mainContentPane" fx:id="centerContent" maxHeight="-1.0" maxWidth="-1.0" prefHeight="636.0" prefWidth="1280.0" VBox.vgrow="ALWAYS">
-      <fx:include fx:id="TestView" source="TestView.fxml" />
-         <ListView fx:id="listView" layoutX="422.0" layoutY="104.0" prefHeight="343.0" prefWidth="356.0" />
-         <Button fx:id="btnStart" layoutX="749.0" layoutY="473.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="63.0" text="Start" />
-     </AnchorPane>
+      <StackPane prefHeight="150.0" prefWidth="200.0">
+         <children>
+          
+          <AnchorPane id="mainContentPane" fx:id="centerContent" maxHeight="-1.0" maxWidth="-1.0" prefHeight="636.0" prefWidth="1280.0">
+               <ListView fx:id="listView" layoutX="422.0" layoutY="104.0" prefHeight="343.0" prefWidth="356.0" />
+               <Button fx:id="btnStart" layoutX="749.0" layoutY="473.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="63.0" text="Start" />
+           </AnchorPane>
+            <VBox fx:id="testViewBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="16.0">
+               <children>
+                  <Label fx:id="lblQuestion" prefHeight="58.0" prefWidth="493.0" text="Question">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" top="30.0" />
+               </padding>
+            </VBox>
+         </children>
+      </StackPane>
       <ButtonBar prefHeight="40.0" prefWidth="655.0">
          <buttons>
           <Button fx:id="btnPrev" mnemonicParsing="false" text="Previous" />

@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tests")
 @NamedQueries({ @NamedQuery(name = "Test.findAll", query = "SELECT t FROM Test t"),
-		@NamedQuery(name = "Test.findByUserId", query = "SELECT t FROM Test t WHERE t.user.uId = :uId") })
+	@NamedQuery(name = "Test.findByUserId", query = "SELECT t FROM Test t WHERE t.user.uId = :uId") })
 public class Test implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -62,10 +62,8 @@ public class Test implements Serializable {
 	}
 
 	@Override
-	public String toString() { //
-		String str = "";
-		str += "Test ID: " + Integer.toString(testId);
-		return str;
+	public String toString() {
+		return "Test [testId=" + testId + ", user=" + user + ", testTitle=" + testTitle + "]";
 	}
 
 }
