@@ -23,7 +23,7 @@ public class InlogView {
 		BorderPane layout = new BorderPane();
 		AnchorPane center = new AnchorPane();
 
-		VBox vbox = new VBox(30);
+		VBox vbox = new VBox(25);
 
 		Label name = new Label("Name");
 		center.setTopAnchor(name, 30.0);
@@ -33,7 +33,6 @@ public class InlogView {
 		center.setTopAnchor(txtName, 20.0);
 		center.setLeftAnchor(txtName, 10.0);
 
-
 		Label pass = new Label("Password");
 		center.setTopAnchor(pass, 40.0);
 		center.setLeftAnchor(pass, 40.0);
@@ -42,10 +41,9 @@ public class InlogView {
 		center.setTopAnchor(txtPass, 65.0);
 		center.setLeftAnchor(txtPass, 10.0);
 
-
 		Button btn = new Button();
 		center.setTopAnchor(btn, 350.0);
-		center.setLeftAnchor(btn, 350.0);
+		center.setLeftAnchor(btn, 320.0);
 		btn.setText("Log in");
 
 		vbox.getChildren().addAll(name, pass);

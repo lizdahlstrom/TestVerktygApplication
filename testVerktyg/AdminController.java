@@ -14,6 +14,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import testVerktyg.adminViews.TestSavePopup;
 
 public class AdminController {
 	private AdminModel model = new AdminModel();
@@ -126,6 +127,7 @@ public class AdminController {
 		});
 
 		btnSaveTest.setOnAction((push) -> {
+			TestSavePopup testSavePop = new TestSavePopup();
 
 			model.saveTest(uId);
 		});
