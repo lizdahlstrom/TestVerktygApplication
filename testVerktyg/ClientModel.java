@@ -22,6 +22,7 @@ public class ClientModel {
 	private Question currQuestion;
 
 	private int questionCounter = 0;
+	private int corrQuestionCount = 0;
 
 	// Constructor
 	public ClientModel() {
@@ -38,8 +39,23 @@ public class ClientModel {
 		} catch (Exception e) {
 			System.out.println("Exception loading tests: " + e);
 		}
-		System.out.println("loading of tests complete..");
+	}
 
+	public void generateQuestion() {
+		questions = testReader.getQuestionByTestId(currTest.getTestId());
+	}
+
+	public boolean gradeQuestion(Question q, int userChoice) {
+		List<Choice> choiceList;
+		choiceList = testReader.getChoiceByQuestionId(q.getQuestId());
+		for (Choice choice : choiceList) {
+			if (choice.getIsTrue() == 1 && choice.getChoiceId() == userChoice) {
+				System.out.println("Graded a question correct...");
+				corrQuestionCount++;
+				return true;
+			}
+		}
+		return false;
 	}
 
 	// Getters and setters
@@ -55,40 +71,27 @@ public class ClientModel {
 		for (Test test : tests) {
 			if (test.getTestTitle() == strTest) {
 				currTest = test;
+				questionCounter = testReader.getQuestionByTestId(currTest.getTestId()).size(); // sets
+																								// questioncount
 				break;
 			}
 		}
 		;
+
 	}
 
 	public Test getCurrTest() {
 		return currTest;
 	}
 
-	public void generateQuestion() {
-		questions = testReader.getQuestionByTestId(currTest.getTestId());
-	}
-
 	public List<Question> getQuestions() {
 		return questions;
-	}
-
-	public boolean gradeQuestion(Question q, int userChoice) {
-		List<Choice> choiceList;
-		choiceList = testReader.getChoiceByQuestionId(q.getQuestId());
-		for (Choice choice : choiceList) {
-			if (choice.getIsTrue() == 1 && choice.getChoiceId() == userChoice) {
-				System.out.println("Graded a question correct...");
-				return true;
-			}
-		}
-		return false;
 	}
 
 	public void gradeTest() {
 		Question question = new Question();
 
-		choices = testReader.getChoiceByQuestionId(question.getQuestId());
+		choices = testReader.getChoiceByQuestionId(currQuestion.getQuestId());
 
 		choices.forEach(choice -> {
 			choice.getIsTrue();

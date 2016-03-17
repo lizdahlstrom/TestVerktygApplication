@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" spacing="30.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="testVerktyg.clientFXML.TestViewController">
@@ -13,12 +14,15 @@
       <Label fx:id="lblQuestion" prefHeight="17.0" prefWidth="127.0" />
       <VBox fx:id="centerVbox" prefHeight="266.0" prefWidth="369.0" spacing="20.0">
          <children>
-            <RadioButton mnemonicParsing="false" text="Option1" />
-            <RadioButton mnemonicParsing="false" text="Option2" />
-            <RadioButton mnemonicParsing="false" text="Option3" />
-            <RadioButton mnemonicParsing="false" text="Option4" />
-            <RadioButton mnemonicParsing="false" text="Option5" />
-            <RadioButton mnemonicParsing="false" text="Option6" />
+            <RadioButton mnemonicParsing="false" text="Option1">
+               <toggleGroup>
+                  <ToggleGroup fx:id="tGroup" />
+               </toggleGroup></RadioButton>
+            <RadioButton mnemonicParsing="false" text="Option2" toggleGroup="$tGroup" />
+            <RadioButton mnemonicParsing="false" text="Option3" toggleGroup="$tGroup" />
+            <RadioButton mnemonicParsing="false" text="Option4" toggleGroup="$tGroup" />
+            <RadioButton mnemonicParsing="false" text="Option5" toggleGroup="$tGroup" />
+            <RadioButton mnemonicParsing="false" text="Option6" toggleGroup="$tGroup" />
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
