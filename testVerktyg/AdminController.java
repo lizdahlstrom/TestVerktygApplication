@@ -129,7 +129,7 @@ public class AdminController {
 		btnSaveTest.setOnAction((push) -> {
 			TestSavePopup testSavePop = new TestSavePopup();
 
-			model.saveTest(uId);
+			model.saveTest(uId, testSavePop.getlstId());
 		});
 
 		btnAddAns.setOnAction((value) -> {

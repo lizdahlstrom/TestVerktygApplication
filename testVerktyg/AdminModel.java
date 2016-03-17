@@ -7,6 +7,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import javafx.collections.ObservableList;
+
 public class AdminModel {
 	private ArrayList<Question> tests = new ArrayList<>();
 	private ArrayList<ArrayList<Choice>> qChoices = new ArrayList<>();
@@ -16,6 +18,7 @@ public class AdminModel {
 	Test test = new Test();
 	Question questions = new Question();
 	Choice options = new Choice();
+	UserTest userTest = new UserTest();
 	private Query query;
 
 	public AdminModel() {
@@ -26,7 +29,7 @@ public class AdminModel {
 		qChoices.add(choices);
 	}
 
-	public void saveTest(int uId) {
+	public void saveTest(int uId, ObservableList<String> uList) {
 		emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
 		em = emfactory.createEntityManager();
 
@@ -79,7 +82,9 @@ public class AdminModel {
 			});
 
 		});
-
+		userTest.setTest(test);
+		userTest.setUser(user);
+		em.persist(userTest);
 		em.getTransaction().commit();
 	}
 

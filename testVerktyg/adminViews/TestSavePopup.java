@@ -33,11 +33,21 @@ public class TestSavePopup {
 
 		top.getChildren().addAll(lblDescript1, lblDescript2, txtUserInput, btnSaveUser);
 		south.getChildren().add(btnDone);
-		center.getChildren().addAll(lstUser);
 		layout.getChildren().add(center);
+		center.setCenter(lstUser);
 		center.setTop(top);
 		center.setBottom(south);
-
+		lstUser.setPrefSize(100, 100);
+		top.setPrefWidth(600);
+		top.setPrefHeight(98);
+		south.setPrefHeight(100);
+		south.setPrefWidth(200);
+		lblDescript1.setLayoutX(14);
+		lblDescript1.setLayoutY(39);
+		txtUserInput.setLayoutX(305);
+		txtUserInput.setLayoutY(34);
+		lblDescript2.setLayoutX(14);
+		lblDescript2.setLayoutY(55);
 		// center.getTopAnchor(top);
 		// center.getBottomAnchor(south);
 
@@ -49,6 +59,7 @@ public class TestSavePopup {
 		});
 		btnDone.setOnAction((value) -> {
 			lstId.addAll(lstUser.getItems());
+			stage.close();
 		});
 		stage.showAndWait();
 	}
