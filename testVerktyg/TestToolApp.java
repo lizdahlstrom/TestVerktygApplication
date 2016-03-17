@@ -31,9 +31,6 @@ public class TestToolApp extends Application {
 	private final static String clientViewPath = "clientFXML/ClientView.fxml";
 	private final String StartPagePath = "StartPage.fxml";
 
-	// @FXML // fx:id ="startPage"
-	// private AnchorPane startPage;
-
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -45,12 +42,8 @@ public class TestToolApp extends Application {
 		emfactory = Persistence.createEntityManagerFactory("Eclipselink_JPA");
 		em = emfactory.createEntityManager();
 
-		// Temporary VBox with button ... needed to launch login window
 		primaryStage.setTitle(title + "StartPage");
 		loadView(StartPagePath);
-		// Button button = new Button("Login");
-		// VBox vboxs = new VBox();
-		// vboxs.getChildren().add(button);
 
 		primaryStage.setScene(scene);
 		primaryStage.show();

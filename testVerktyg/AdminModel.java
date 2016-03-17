@@ -34,7 +34,6 @@ public class AdminModel {
 		em = emfactory.createEntityManager();
 
 		System.out.println("uid = " + uId);
-		// System.out.println("EntityManager : " + em);
 
 		em.getTransaction().begin();
 		query = em.createNamedQuery("User.findUserById", User.class);
@@ -48,13 +47,7 @@ public class AdminModel {
 
 		}
 
-		// users.setUId(uId);
-		// users.setIsAdmin(true);
-		// em.persist(users);
-
-		// test.setTestId(0);
 		test.setUser(user);
-		// test.setQuestions(tests);
 
 		em.persist(test);
 

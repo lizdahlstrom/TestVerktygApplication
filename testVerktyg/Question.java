@@ -29,12 +29,6 @@ public class Question implements Serializable {
 
 	private String question;
 
-	// private String questions;
-
-	// bi-directional many-to-one association to Choice
-	// @OneToMany(mappedBy = "question")
-	// private List<Choice> choices;
-
 	// bi-directional many-to-one association to Test
 	@ManyToOne
 	@JoinColumn(name = "testId")
@@ -58,29 +52,6 @@ public class Question implements Serializable {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
-
-	/*
-	 * public String getQuestions() { return this.questions; }
-	 *
-	 * public void setQuestions(String questions) { this.questions = questions;
-	 * }
-	 *//*
-		 * public List<Choice> getChoices() { return this.choices; }
-		 *
-		 * public void setChoices(List<Choice> choices) { this.choices =
-		 * choices; }
-		 */
-	/*
-	 * public Choice addChoice(Choice choice) { getChoices().add(choice);
-	 * choice.setQuestion(this);
-	 *
-	 * return choice; }
-	 *
-	 * public Choice removeChoice(Choice choice) { getChoices().remove(choice);
-	 * choice.setQuestion(null);
-	 *
-	 * return choice; }
-	 */
 
 	public Test getTest() {
 		return this.test;

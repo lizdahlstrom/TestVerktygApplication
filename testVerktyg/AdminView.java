@@ -12,7 +12,6 @@ public class AdminView {
 	private Button btnSaveTest;
 	private Scene scene;
 	private AnchorPane center;
-	private QuestionCreator qCreator;
 
 	// Constructor
 	public AdminView() {
@@ -36,9 +35,10 @@ public class AdminView {
 
 		center.getChildren().addAll(btnCreateQuest, btnSaveTest);
 
-		//Setting the scenes size
+		// Setting the scenes size
 		scene = new Scene(center, 420, 420);
 	}
+
 	// Methods
 	public Scene getAdminScene() {
 		return scene;

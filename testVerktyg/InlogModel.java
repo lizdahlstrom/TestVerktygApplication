@@ -27,7 +27,6 @@ public class InlogModel {
 			// Checking if name and password == true or != null
 			user = (User) query.getSingleResult();
 			setUId(user.getUId());
-			// if (!user.equals(null)) {
 
 			if (user.getIsAdmin() == true) {
 				bool = true;

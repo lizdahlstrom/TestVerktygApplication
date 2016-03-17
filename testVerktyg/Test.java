@@ -27,10 +27,6 @@ public class Test implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int testId;
 
-	// bi-directional many-to-one association to Question
-	// @OneToMany(mappedBy="test")
-	// private List<Question> questions;
-
 	// bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name = "uId")
@@ -48,22 +44,6 @@ public class Test implements Serializable {
 	public void setTestId(int testId) {
 		this.testId = testId;
 	}
-	/*
-	 * public List<Question> getQuestions() { return this.questions; }
-	 *
-	 * public void setQuestions(List<Question> questions) { this.questions =
-	 * questions; }
-	 *
-	 * public Question addQuestion(Question question) {
-	 * getQuestions().add(question); question.setTest(this);
-	 *
-	 * return question; }
-	 *
-	 * public Question removeQuestion(Question question) {
-	 * getQuestions().remove(question); question.setTest(null);
-	 *
-	 * return question; }
-	 */
 
 	public User getUser() {
 		return this.user;
