@@ -39,16 +39,16 @@
     </MenuBar>
       <HBox nodeOrientation="LEFT_TO_RIGHT">
          <children>
-            <Label fx:id="lblTitle" prefHeight="34.0" prefWidth="345.0" text="TestName">
+            <Label fx:id="lblTitle" prefHeight="34.0" prefWidth="345.0">
                <font>
                   <Font size="16.0" />
                </font></Label>
-            <Label fx:id="lblQuestionCount" layoutX="30.0" layoutY="10.0" prefHeight="34.0" prefWidth="345.0" text="QuestionCount">
+            <Label fx:id="lblQuestionCount" layoutX="30.0" layoutY="10.0" prefHeight="34.0" prefWidth="345.0">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="lblTimer" prefHeight="51.0" prefWidth="111.0" text="Timer">
+            <Label fx:id="lblTimer" prefHeight="51.0" prefWidth="111.0">
                <font>
                   <Font size="16.0" />
                </font></Label>
@@ -64,7 +64,7 @@
                <ListView fx:id="listView" layoutX="422.0" layoutY="104.0" prefHeight="343.0" prefWidth="356.0" />
                <Button fx:id="btnStart" layoutX="749.0" layoutY="473.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="63.0" text="Start" />
            </AnchorPane>
-            <VBox fx:id="testViewBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="16.0">
+            <VBox fx:id="testViewBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                <children>
                   <Label fx:id="lblQuestion" prefHeight="58.0" prefWidth="493.0" text="Question">
                      <font>

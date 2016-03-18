@@ -22,7 +22,7 @@ public class ClientModel {
 	private Test currTest = new Test();
 	private Question currQuestion = new Question();
 
-	private int questionsize;
+	private int questionsize = 0;
 
 
 	private int questionCounter = 0;
@@ -131,6 +131,10 @@ public class ClientModel {
 
 	public int getQuestionCounter() {
 		return questionCounter;
+	}
+
+	public void setQuestionCounter(int questionCounter) {
+		this.questionCounter = questionCounter;
 	}
 
 	public int getCorrQuestionCount() {

@@ -60,7 +60,7 @@ public class ClientViewController implements Initializable {
 
 	private ArrayList<RadioButton> btnList = new ArrayList<>();
 
-	private ClientModel clientModel = new ClientModel();;
+	private ClientModel clientModel = new ClientModel();
 
 	public ClientViewController() {
 	}
@@ -85,11 +85,18 @@ public class ClientViewController implements Initializable {
 		});
 		btnNext.setOnAction(e -> {
 			if(clientModel.getQuestionCounter() < clientModel.getQuestionsize()){
-				clientModel.gradeQuestion(clientModel.getCurrQuestion(), getSelectedItem());
+				clientModel.gradeQuestion(clientModel.getCurrQuestion(), getSelectedItem()); // grading question
 				if(clientModel.getQuestionCounter() == clientModel.getQuestionsize() -1){
 					btnNext.setText("Finish");
 				}
 				showNextQuestion();
+			}
+			else if(clientModel.getQuestionCounter() == clientModel.getQuestionsize()){
+				cleanQuestionView();
+				lblQuestion.setText("Number of correct answers: " + clientModel.getCorrQuestionCount());
+				testViewBox.getChildren().add(lblQuestion);
+				testViewBox.setVisible(true);
+				clientModel.setQuestionCounter(clientModel.getQuestionCounter()+ 1);
 			}
 			else{
 				clientModel = new ClientModel();
@@ -138,13 +145,16 @@ public class ClientViewController implements Initializable {
 		cleanQuestionView();
 		testViewBox.setVisible(true);
 		System.out.println("Showing next question...");
-		if(clientModel.getQuestionCounter() <= clientModel.getQuestionsize())
+		if(clientModel.getQuestionCounter() < clientModel.getQuestionsize()){
 			clientModel.generateQuestion();
+			generateView(clientModel.getCurrChoices());
+		}
+
 		Test test = clientModel.getCurrTest();
 		lblTitle.setText("Test title: \" " + test.getTestTitle() + "\" "); // Test title
 		lblQuestionCount.setText("Question: " + clientModel.getQuestionCounter() + "/" + clientModel.getQuestionsize());
 
-		generateView(clientModel.getCurrChoices());
+
 	}
 
 	public void generateView(List<Choice> options) {
@@ -159,6 +169,7 @@ public class ClientViewController implements Initializable {
 		btnList.forEach(btn -> {
 			testViewBox.getChildren().add(btn); // adds btns to vbox
 		});
+		tGroup.selectToggle(btnList.get(0));
 	}
 
 	public void cleanQuestionView(){
